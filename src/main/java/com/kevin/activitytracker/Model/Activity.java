@@ -12,18 +12,14 @@ public class Activity {
     private String activityType;
     private String activityName;
     private String time;
-    // @Id
-    private String activityDate;
-
 
     public Activity() {
     }
 
-    public Activity(String activityType, String activityName, String time, String activityDate) {
+    public Activity(String activityType, String activityName, String time) {
         this.activityType = activityType;
         this.activityName = activityName;
         this.time = time;
-        this.activityDate = activityDate;
     }
 
     // public Long getId() {
@@ -52,21 +48,12 @@ public class Activity {
     public void setTime(String time) {
         this.time = time;
     }
-    public String getActivityDate() {
-        return activityDate;
-    }
-
-    public void setActivityDate(String activityDate) {
-        this.activityDate = activityDate;
-    }
 
     @Override
     public String toString() {
-        return "Activity [activityDate=" + activityDate + ", activityName=" + activityName + ", activityType="
-                + activityType + ", time=" + time + "]";
+        return "Activity [activityName=" + activityName + ", activityType=" + /*activityType + ", id=" + id +*/ ", time="
+                + time + "]";
     }
-
-    
 
     
 

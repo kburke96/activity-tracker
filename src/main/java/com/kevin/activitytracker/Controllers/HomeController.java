@@ -3,7 +3,7 @@ package com.kevin.activitytracker.Controllers;
 import java.util.List;
 
 import com.kevin.activitytracker.Model.Activity;
-// import com.kevin.activitytracker.Repository.ActivityRepository;
+import com.kevin.activitytracker.Repository.ActivityRepository;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
