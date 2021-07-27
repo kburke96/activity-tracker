@@ -8,6 +8,7 @@ import com.kevin.activitytracker.Repository.ActivityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -29,6 +30,11 @@ public class HomeController {
     @GetMapping("/activities") 
     public Iterable<Activity> getAllActivities() {
         return this.activityRepository.findAll();
+    }
+
+    @GetMapping("/activity")
+    public Iterable<Activity> getActivity(@RequestParam String type) {
+        return this.activityRepository.findByActivityType(type);
     }
 
     // @GetMapping("/activities")
