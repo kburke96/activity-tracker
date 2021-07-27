@@ -1,7 +1,17 @@
 .ActivitySmallCard {
-    padding: 10px;
+    
     margin-bottom: 20px;;
 
-
+    background-color: aqua;
+    margin: 80px 100px;
     
+    .cycling {
+        padding: 10px;
+        background-color: #88d6e2;
+    }
+
+    .not-cycling {
+        padding: 10px;
+        background-color: #ff662c;
+    }
 }
