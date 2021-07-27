@@ -4,31 +4,31 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 // import java.time.Duration;
-// @Entity
+@Entity
 public class Activity {
 
-    // @Id
-    // private Long id;
+    @Id
+    private Long id;
     private String activityType;
     private String activityName;
     private String time;
 
-    public Activity() {
-    }
-
-    public Activity(String activityType, String activityName, String time) {
-        this.activityType = activityType;
-        this.activityName = activityName;
-        this.time = time;
-    }
-
-    // public Long getId() {
-    //     return id;
+    // public Activity() {
     // }
 
-    // public void setId(Long id) {
-    //     this.id = id;
+    // public Activity(String activityType, String activityName, String time) {
+    //     this.activityType = activityType;
+    //     this.activityName = activityName;
+    //     this.time = time;
     // }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getActivityType() {
         return activityType;
@@ -51,16 +51,10 @@ public class Activity {
 
     @Override
     public String toString() {
-        return "Activity [activityName=" + activityName + ", activityType=" + /*activityType + ", id=" + id +*/ ", time="
+        return "Activity [activityName=" + activityName + ", activityType=" + activityType + ", id=" + id + ", time="
                 + time + "]";
     }
-
-    
-
-    
-
-
-    
+ 
     
 
 }

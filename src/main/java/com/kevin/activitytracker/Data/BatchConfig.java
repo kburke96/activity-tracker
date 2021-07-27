@@ -25,7 +25,7 @@ import org.springframework.core.io.ClassPathResource;
 @EnableBatchProcessing
 public class BatchConfig {
 
-    private static final String[] FIELD_NAMES = new String[] { "activity_type", "activity_date", "favorite", "title",
+    private static final String[] FIELD_NAMES = new String[] { "id", "activity_type", "activity_date", "favorite", "title",
             "distance", "calories", "activity_time", "avg_hr", "max_hr", "aerobic_teE", "avg_run_cadence",
             "max_run_cadence", "avg_speed", "max_speed", "elev_gain", "elev_loss", "avg_stride_length",
             "avg_vertical_ratio", "avg_vertical_oscillation", "avg_bike_cadence", "max_bike_cadence",
@@ -41,7 +41,7 @@ public class BatchConfig {
 
     @Bean
     public FlatFileItemReader<InputActivity> reader() {
-        return new FlatFileItemReaderBuilder<InputActivity>().name("personItemReader")
+        return new FlatFileItemReaderBuilder<InputActivity>().name("activityItemReader")
                 .resource(new ClassPathResource("GarminActivities.csv")).delimited().names(FIELD_NAMES)
                 .fieldSetMapper(new BeanWrapperFieldSetMapper<InputActivity>() {
                     {
@@ -59,7 +59,7 @@ public class BatchConfig {
     public JdbcBatchItemWriter<Activity> writer(DataSource dataSource) {
         return new JdbcBatchItemWriterBuilder<Activity>()
                 .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
-                .sql("INSERT INTO activity (activity_type, title, activity_time ) VALUES (:activityType, :activityName, :time)")
+                .sql("INSERT INTO activity (id, activity_type, activity_name, time ) VALUES (:id, :activityType, :activityName, :time)")
                 .dataSource(dataSource).build();
     }
 

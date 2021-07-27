@@ -2,63 +2,63 @@ package com.kevin.activitytracker.Data;
 
 public class InputActivity {
 
-    // private Long id;
-    private String activity_type;
-    private String activity_date;
+    private Long id;
+    private String activityType;
+    private String activityDate;
     private String favorite;
     private String title;
     private String distance;
     private String calories;
-    private String activity_time;
-    private String avg_hr;
-    private String max_hr;
-    private String aerobic_teE;
-    private String avg_run_cadence;
-    private String max_run_cadence;
-    private String avg_speed;
-    private String max_speed;
-    private String elev_gain;
-    private String elev_loss;
-    private String avg_stride_length;
-    private String avg_vertical_ratio;
-    private String avg_vertical_oscillation;
-    private String avg_bike_cadence;
-    private String max_bike_cadence;
-    private String training_stress_score;
+    private String activityTime;
+    private String avgHr;
+    private String maxHr;
+    private String aerobicTeE;
+    private String avgRunCadence;
+    private String maxRunCadence;
+    private String avgSpeed;
+    private String maxSpeed;
+    private String elevGain;
+    private String elevLoss;
+    private String avgStrideLength;
+    private String avgVerticalRatio;
+    private String avgVerticalOscillation;
+    private String avgBikeCadence;
+    private String maxBikeCadence;
+    private String trainingStressScore;
     private String grit;
     private String flow;
-    private String total_strokes;
-    private String total_reps;
-    private String total_sets;
-    private String dive_time;
-    private String min_temp;
-    private String surface_interval;
+    private String totalStrokes;
+    private String totalReps;
+    private String totalSets;
+    private String diveTime;
+    private String minTemp;
+    private String surfaceInterval;
     private String decompression;
-    private String best_lap_time;
-    private String number_of_laps;
-    private String max_temp;
-    private String moving_time;
-    private String elapsed_time;
-    private String min_elevation;
-    private String max_elevation;
+    private String bestLapTime;
+    private String numberOfLaps;
+    private String maxTemp;
+    private String movingTime;
+    private String elapsedTime;
+    private String minElevation;
+    private String maxElevation;
     
-    // public Long getId() {
-    //     return id;
-    // }
-    // public void setId(Long id) {
-    //     this.id = id;
-    // }
-    public String getActivity_type() {
-        return activity_type;
+    public Long getId() {
+        return id;
     }
-    public void setActivity_type(String activity_type) {
-        this.activity_type = activity_type;
+    public void setId(Long id) {
+        this.id = id;
     }
-    public String getActivity_date() {
-        return activity_date;
+    public String getActivityType() {
+        return activityType;
     }
-    public void setActivity_date(String activity_date) {
-        this.activity_date = activity_date;
+    public void setActivityType(String activityType) {
+        this.activityType = activityType;
+    }
+    public String getActivityDate() {
+        return activityDate;
+    }
+    public void setActivityDate(String activityDate) {
+        this.activityDate = activityDate;
     }
     public String getFavorite() {
         return favorite;
@@ -84,101 +84,101 @@ public class InputActivity {
     public void setCalories(String calories) {
         this.calories = calories;
     }
-    public String getActivity_time() {
-        return activity_time;
+    public String getActivityTime() {
+        return activityTime;
     }
-    public void setActivity_time(String activity_time) {
-        this.activity_time = activity_time;
+    public void setActivityTime(String activityTime) {
+        this.activityTime = activityTime;
     }
-    public String getAvg_hr() {
-        return avg_hr;
+    public String getAvgHr() {
+        return avgHr;
     }
-    public void setAvg_hr(String avg_hr) {
-        this.avg_hr = avg_hr;
+    public void setAvgHr(String avgHr) {
+        this.avgHr = avgHr;
     }
-    public String getMax_hr() {
-        return max_hr;
+    public String getMaxHr() {
+        return maxHr;
     }
-    public void setMax_hr(String max_hr) {
-        this.max_hr = max_hr;
+    public void setMaxHr(String maxHr) {
+        this.maxHr = maxHr;
     }
-    public String getAerobic_teE() {
-        return aerobic_teE;
+    public String getAerobicTeE() {
+        return aerobicTeE;
     }
-    public void setAerobic_teE(String aerobic_teE) {
-        this.aerobic_teE = aerobic_teE;
+    public void setAerobicTeE(String aerobicTeE) {
+        this.aerobicTeE = aerobicTeE;
     }
-    public String getAvg_run_cadence() {
-        return avg_run_cadence;
+    public String getAvgRunCadence() {
+        return avgRunCadence;
     }
-    public void setAvg_run_cadence(String avg_run_cadence) {
-        this.avg_run_cadence = avg_run_cadence;
+    public void setAvgRunCadence(String avgRunCadence) {
+        this.avgRunCadence = avgRunCadence;
     }
-    public String getMax_run_cadence() {
-        return max_run_cadence;
+    public String getMaxRunCadence() {
+        return maxRunCadence;
     }
-    public void setMax_run_cadence(String max_run_cadence) {
-        this.max_run_cadence = max_run_cadence;
+    public void setMaxRunCadence(String maxRunCadence) {
+        this.maxRunCadence = maxRunCadence;
     }
-    public String getAvg_speed() {
-        return avg_speed;
+    public String getAvgSpeed() {
+        return avgSpeed;
     }
-    public void setAvg_speed(String avg_speed) {
-        this.avg_speed = avg_speed;
+    public void setAvgSpeed(String avgSpeed) {
+        this.avgSpeed = avgSpeed;
     }
-    public String getMax_speed() {
-        return max_speed;
+    public String getMaxSpeed() {
+        return maxSpeed;
     }
-    public void setMax_speed(String max_speed) {
-        this.max_speed = max_speed;
+    public void setMaxSpeed(String maxSpeed) {
+        this.maxSpeed = maxSpeed;
     }
-    public String getElev_gain() {
-        return elev_gain;
+    public String getElevGain() {
+        return elevGain;
     }
-    public void setElev_gain(String elev_gain) {
-        this.elev_gain = elev_gain;
+    public void setElevGain(String elevGain) {
+        this.elevGain = elevGain;
     }
-    public String getElev_loss() {
-        return elev_loss;
+    public String getElevLoss() {
+        return elevLoss;
     }
-    public void setElev_loss(String elev_loss) {
-        this.elev_loss = elev_loss;
+    public void setElevLoss(String elevLoss) {
+        this.elevLoss = elevLoss;
     }
-    public String getAvg_stride_length() {
-        return avg_stride_length;
+    public String getAvgStrideLength() {
+        return avgStrideLength;
     }
-    public void setAvg_stride_length(String avg_stride_length) {
-        this.avg_stride_length = avg_stride_length;
+    public void setAvgStrideLength(String avgStrideLength) {
+        this.avgStrideLength = avgStrideLength;
     }
-    public String getAvg_vertical_ratio() {
-        return avg_vertical_ratio;
+    public String getAvgVerticalRatio() {
+        return avgVerticalRatio;
     }
-    public void setAvg_vertical_ratio(String avg_vertical_ratio) {
-        this.avg_vertical_ratio = avg_vertical_ratio;
+    public void setAvgVerticalRatio(String avgVerticalRatio) {
+        this.avgVerticalRatio = avgVerticalRatio;
     }
-    public String getAvg_vertical_oscillation() {
-        return avg_vertical_oscillation;
+    public String getAvgVerticalOscillation() {
+        return avgVerticalOscillation;
     }
-    public void setAvg_vertical_oscillation(String avg_vertical_oscillation) {
-        this.avg_vertical_oscillation = avg_vertical_oscillation;
+    public void setAvgVerticalOscillation(String avgVerticalOscillation) {
+        this.avgVerticalOscillation = avgVerticalOscillation;
     }
-    public String getAvg_bike_cadence() {
-        return avg_bike_cadence;
+    public String getAvgBikeCadence() {
+        return avgBikeCadence;
     }
-    public void setAvg_bike_cadence(String avg_bike_cadence) {
-        this.avg_bike_cadence = avg_bike_cadence;
+    public void setAvgBikeCadence(String avgBikeCadence) {
+        this.avgBikeCadence = avgBikeCadence;
     }
-    public String getMax_bike_cadence() {
-        return max_bike_cadence;
+    public String getMaxBikeCadence() {
+        return maxBikeCadence;
     }
-    public void setMax_bike_cadence(String max_bike_cadence) {
-        this.max_bike_cadence = max_bike_cadence;
+    public void setMaxBikeCadence(String maxBikeCadence) {
+        this.maxBikeCadence = maxBikeCadence;
     }
-    public String getTraining_stress_score() {
-        return training_stress_score;
+    public String getTrainingStressScore() {
+        return trainingStressScore;
     }
-    public void setTraining_stress_score(String training_stress_score) {
-        this.training_stress_score = training_stress_score;
+    public void setTrainingStressScore(String trainingStressScore) {
+        this.trainingStressScore = trainingStressScore;
     }
     public String getGrit() {
         return grit;
@@ -192,41 +192,41 @@ public class InputActivity {
     public void setFlow(String flow) {
         this.flow = flow;
     }
-    public String getTotal_strokes() {
-        return total_strokes;
+    public String getTotalStrokes() {
+        return totalStrokes;
     }
-    public void setTotal_strokes(String total_strokes) {
-        this.total_strokes = total_strokes;
+    public void setTotalStrokes(String totalStrokes) {
+        this.totalStrokes = totalStrokes;
     }
-    public String getTotal_reps() {
-        return total_reps;
+    public String getTotalReps() {
+        return totalReps;
     }
-    public void setTotal_reps(String total_reps) {
-        this.total_reps = total_reps;
+    public void setTotalReps(String totalReps) {
+        this.totalReps = totalReps;
     }
-    public String getTotal_sets() {
-        return total_sets;
+    public String getTotalSets() {
+        return totalSets;
     }
-    public void setTotal_sets(String total_sets) {
-        this.total_sets = total_sets;
+    public void setTotalSets(String totalSets) {
+        this.totalSets = totalSets;
     }
-    public String getDive_time() {
-        return dive_time;
+    public String getDiveTime() {
+        return diveTime;
     }
-    public void setDive_time(String dive_time) {
-        this.dive_time = dive_time;
+    public void setDiveTime(String diveTime) {
+        this.diveTime = diveTime;
     }
-    public String getMin_temp() {
-        return min_temp;
+    public String getMinTemp() {
+        return minTemp;
     }
-    public void setMin_temp(String min_temp) {
-        this.min_temp = min_temp;
+    public void setMinTemp(String minTemp) {
+        this.minTemp = minTemp;
     }
-    public String getSurface_interval() {
-        return surface_interval;
+    public String getSurfaceInterval() {
+        return surfaceInterval;
     }
-    public void setSurface_interval(String surface_interval) {
-        this.surface_interval = surface_interval;
+    public void setSurfaceInterval(String surfaceInterval) {
+        this.surfaceInterval = surfaceInterval;
     }
     public String getDecompression() {
         return decompression;
@@ -234,65 +234,66 @@ public class InputActivity {
     public void setDecompression(String decompression) {
         this.decompression = decompression;
     }
-    public String getBest_lap_time() {
-        return best_lap_time;
+    public String getBestLapTime() {
+        return bestLapTime;
     }
-    public void setBest_lap_time(String best_lap_time) {
-        this.best_lap_time = best_lap_time;
+    public void setBestLapTime(String bestLapTime) {
+        this.bestLapTime = bestLapTime;
     }
-    public String getNumber_of_laps() {
-        return number_of_laps;
+    public String getNumberOfLaps() {
+        return numberOfLaps;
     }
-    public void setNumber_of_laps(String number_of_laps) {
-        this.number_of_laps = number_of_laps;
+    public void setNumberOfLaps(String numberOfLaps) {
+        this.numberOfLaps = numberOfLaps;
     }
-    public String getMax_temp() {
-        return max_temp;
+    public String getMaxTemp() {
+        return maxTemp;
     }
-    public void setMax_temp(String max_temp) {
-        this.max_temp = max_temp;
+    public void setMaxTemp(String maxTemp) {
+        this.maxTemp = maxTemp;
     }
-    public String getMoving_time() {
-        return moving_time;
+    public String getMovingTime() {
+        return movingTime;
     }
-    public void setMoving_time(String moving_time) {
-        this.moving_time = moving_time;
+    public void setMovingTime(String movingTime) {
+        this.movingTime = movingTime;
     }
-    public String getElapsed_time() {
-        return elapsed_time;
+    public String getElapsedTime() {
+        return elapsedTime;
     }
-    public void setElapsed_time(String elapsed_time) {
-        this.elapsed_time = elapsed_time;
+    public void setElapsedTime(String elapsedTime) {
+        this.elapsedTime = elapsedTime;
     }
-    public String getMin_elevation() {
-        return min_elevation;
+    public String getMinElevation() {
+        return minElevation;
     }
-    public void setMin_elevation(String min_elevation) {
-        this.min_elevation = min_elevation;
+    public void setMinElevation(String minElevation) {
+        this.minElevation = minElevation;
     }
-    public String getMax_elevation() {
-        return max_elevation;
+    public String getMaxElevation() {
+        return maxElevation;
     }
-    public void setMax_elevation(String max_elevation) {
-        this.max_elevation = max_elevation;
+    public void setMaxElevation(String maxElevation) {
+        this.maxElevation = maxElevation;
     }
     @Override
     public String toString() {
-        return "InputActivity [activity_date=" + activity_date + ", activity_time=" + activity_time + ", activity_type="
-                + activity_type + ", aerobic_teE=" + aerobic_teE + ", avg_bike_cadence=" + avg_bike_cadence
-                + ", avg_hr=" + avg_hr + ", avg_run_cadence=" + avg_run_cadence + ", avg_speed=" + avg_speed
-                + ", avg_stride_length=" + avg_stride_length + ", avg_vertical_oscillation=" + avg_vertical_oscillation
-                + ", avg_vertical_ratio=" + avg_vertical_ratio + ", best_lap_time=" + best_lap_time + ", calories="
-                + calories + ", decompression=" + decompression + ", distance=" + distance + ", dive_time=" + dive_time
-                + ", elapsed_time=" + elapsed_time + ", elev_gain=" + elev_gain + ", elev_loss=" + elev_loss
-                + ", favorite=" + favorite + ", flow=" + flow + ", grit=" + grit + ", max_bike_cadence="
-                + max_bike_cadence + ", max_elevation=" + max_elevation + ", max_hr=" + max_hr + ", max_run_cadence="
-                + max_run_cadence + ", max_speed=" + max_speed + ", max_temp=" + max_temp + ", min_elevation="
-                + min_elevation + ", min_temp=" + min_temp + ", moving_time=" + moving_time + ", number_of_laps="
-                + number_of_laps + ", surface_interval=" + surface_interval + ", title=" + title + ", total_reps="
-                + total_reps + ", total_sets=" + total_sets + ", total_strokes=" + total_strokes
-                + ", training_stress_score=" + training_stress_score + "]";
+        return "InputActivity [activityDate=" + activityDate + ", activityTime=" + activityTime + ", activityType="
+                + activityType + ", aerobicTeE=" + aerobicTeE + ", avgBikeCadence=" + avgBikeCadence + ", avgHr="
+                + avgHr + ", avgRunCadence=" + avgRunCadence + ", avgSpeed=" + avgSpeed + ", avgStrideLength="
+                + avgStrideLength + ", avgVerticalOscillation=" + avgVerticalOscillation + ", avgVerticalRatio="
+                + avgVerticalRatio + ", bestLapTime=" + bestLapTime + ", calories=" + calories + ", decompression="
+                + decompression + ", distance=" + distance + ", diveTime=" + diveTime + ", elapsedTime=" + elapsedTime
+                + ", elevGain=" + elevGain + ", elevLoss=" + elevLoss + ", favorite=" + favorite + ", flow=" + flow
+                + ", grit=" + grit + ", id=" + id + ", maxBikeCadence=" + maxBikeCadence + ", maxElevation="
+                + maxElevation + ", maxHr=" + maxHr + ", maxRunCadence=" + maxRunCadence + ", maxSpeed=" + maxSpeed
+                + ", maxTemp=" + maxTemp + ", minElevation=" + minElevation + ", minTemp=" + minTemp + ", movingTime="
+                + movingTime + ", numberOfLaps=" + numberOfLaps + ", surfaceInterval=" + surfaceInterval + ", title="
+                + title + ", totalReps=" + totalReps + ", totalSets=" + totalSets + ", totalStrokes=" + totalStrokes
+                + ", trainingStressScore=" + trainingStressScore + "]";
     }
+    
+    
 
     
     

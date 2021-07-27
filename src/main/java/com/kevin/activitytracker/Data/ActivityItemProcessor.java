@@ -13,10 +13,10 @@ public class ActivityItemProcessor implements ItemProcessor<InputActivity, Activ
         // TODO Auto-generated method stub
         Activity activity = new Activity();
 
-        // activity.setId(inputActivity.getId());
-        activity.setActivityType(inputActivity.getActivity_type());
+        activity.setId(inputActivity.getId());
+        activity.setActivityType(inputActivity.getActivityType());
         activity.setActivityName(inputActivity.getTitle());
-        activity.setTime(inputActivity.getActivity_time());
+        activity.setTime(inputActivity.getActivityTime());
 
         System.out.println("Converting (" + inputActivity + ") into (" + activity + ")");
         return activity;
