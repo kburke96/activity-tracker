@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin
+@CrossOrigin()
 public class HomeController {
     
     private ActivityRepository activityRepository;
@@ -22,6 +22,7 @@ public class HomeController {
         this.activityRepository = activityRepository;
     }
 
+    
     @GetMapping("/home")
     public String home() {
         return "Hello world!";
