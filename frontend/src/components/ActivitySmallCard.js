@@ -19,6 +19,7 @@ export const ActivitySmallCard = ({ activity }) => {
                 <p>{activity.activityType}</p>
                 <p>{activity.activityName}</p>
                 <p>{activity.time}</p>
+                <p>{activity.distance}km</p>
             </div>
         </div>
     );
