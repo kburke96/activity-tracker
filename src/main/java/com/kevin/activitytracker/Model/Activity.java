@@ -12,6 +12,7 @@ public class Activity {
     private String activityType;
     private String activityName;
     private String time;
+    private double distance;
 
     // public Activity() {
     // }
@@ -21,6 +22,14 @@ public class Activity {
     //     this.activityName = activityName;
     //     this.time = time;
     // }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
 
     public Long getId() {
         return id;
@@ -51,8 +60,8 @@ public class Activity {
 
     @Override
     public String toString() {
-        return "Activity [activityName=" + activityName + ", activityType=" + activityType + ", id=" + id + ", time="
-                + time + "]";
+        return "Activity [activityName=" + activityName + ", activityType=" + activityType + ", distance=" + distance
+                + ", id=" + id + ", time=" + time + "]";
     }
  
     

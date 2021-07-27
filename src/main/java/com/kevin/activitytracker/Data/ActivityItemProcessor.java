@@ -17,6 +17,7 @@ public class ActivityItemProcessor implements ItemProcessor<InputActivity, Activ
         activity.setActivityType(inputActivity.getActivityType());
         activity.setActivityName(inputActivity.getTitle());
         activity.setTime(inputActivity.getActivityTime());
+        activity.setDistance(Double.parseDouble(inputActivity.getDistance()));
 
         System.out.println("Converting (" + inputActivity + ") into (" + activity + ")");
         return activity;

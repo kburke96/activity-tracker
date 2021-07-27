@@ -59,7 +59,7 @@ public class BatchConfig {
     public JdbcBatchItemWriter<Activity> writer(DataSource dataSource) {
         return new JdbcBatchItemWriterBuilder<Activity>()
                 .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
-                .sql("INSERT INTO activity (id, activity_type, activity_name, time ) VALUES (:id, :activityType, :activityName, :time)")
+                .sql("INSERT INTO activity (id, activity_type, activity_name, time, distance ) VALUES (:id, :activityType, :activityName, :time, :distance)")
                 .dataSource(dataSource).build();
     }
 
