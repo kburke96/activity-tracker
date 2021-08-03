@@ -1,6 +1,7 @@
 package com.kevin.activitytracker.Controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.kevin.activitytracker.Model.Activity;
 import com.kevin.activitytracker.Repository.ActivityRepository;
@@ -33,9 +34,18 @@ public class HomeController {
         return this.activityRepository.findAll();
     }
 
-    @GetMapping("/activity")
-    public Iterable<Activity> getActivity(@RequestParam String type) {
+    @GetMapping(
+        value = "/activity",
+        params = "activityType")
+    public Iterable<Activity> getActivity(@RequestParam("activityType") String type) {
         return this.activityRepository.findByActivityType(type);
+    }
+
+    @GetMapping(
+        value = "/activity",
+        params = "id")
+    public Optional<Activity> getSingleActivity(@RequestParam("id") Long id) {
+        return this.activityRepository.findById(id);
     }
 
     // @GetMapping("/activities")
