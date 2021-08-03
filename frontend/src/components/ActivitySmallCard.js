@@ -1,5 +1,6 @@
 import { React } from 'react';
 import './ActivitySmallCard.scss';
+import { Link } from 'react-router-dom';
 
 export const ActivitySmallCard = ({ activity }) => {
     
@@ -26,8 +27,7 @@ export const ActivitySmallCard = ({ activity }) => {
                     </tr>
                     <tr>
                         <th>
-                            <p className="activity-name">{activity.activityName}</p>
-                            
+                            <p className="activity-name"><Link to={{pathname: `/activity/${activity.id}`}}>{activity.activityName}</Link></p>
                         </th>
                         <th>
                             <p className="activity-time">{activity.time}</p>
