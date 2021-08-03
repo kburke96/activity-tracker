@@ -1,9 +1,9 @@
 .ActivitySmallCard {
     
-    margin-bottom: 20px;;
+    
 
     background-color: aqua;
-    margin: 80px 100px;
+    margin: 80px 350px;
     
     .cycling {
         padding: 10px;
@@ -13,5 +13,32 @@
     .not-cycling {
         padding: 10px;
         background-color: #ff662c;
+    }
+
+    .activity-table {
+        width: 100%;
+    }
+
+    .activity-type-name {
+        text-align: left;
+        padding-left: 40px;
+        font-size: 30px;
+        margin-bottom: 5px;
+    }
+
+    .activity-name {
+        text-align: left;
+        padding-left: 40px;
+    }
+
+    .activity-time {
+        text-align: left;
+        padding-left: 40px;
+    }
+
+    .activity-distance {
+        text-align: left;
+        padding-left: 40px;
+        margin-bottom: 5px;
     }
 }

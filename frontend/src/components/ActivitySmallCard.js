@@ -15,11 +15,28 @@ export const ActivitySmallCard = ({ activity }) => {
     return (
         <div className="ActivitySmallCard">
             <div className={isActivityCycling ? 'cycling' : 'not-cycling'}>
-
-                <p>{activity.activityType}</p>
-                <p>{activity.activityName}</p>
-                <p>{activity.time}</p>
-                <p>{activity.distance}km</p>
+                <table className="activity-table">
+                    <tr>
+                        <th>
+                            <p className="activity-type-name">{activity.activityType}</p>
+                        </th>
+                        <th>
+                            <p className="activity-distance">{activity.distance}km</p>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <p className="activity-name">{activity.activityName}</p>
+                            
+                        </th>
+                        <th>
+                            <p className="activity-time">{activity.time}</p>
+                        </th>
+                    </tr>
+                </table>
+                
+                
+                
             </div>
         </div>
     );
