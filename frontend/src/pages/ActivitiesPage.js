@@ -1,7 +1,8 @@
+import './ActivitiesPage.scss';
 import { React, useEffect, useState } from 'react';
 import { ActivitySmallCard } from '../components/ActivitySmallCard';
 
-export const ActivityPage = () => {
+export const ActivitiesPage = () => {
     // const [activity, setActivity] = useState({activities: []});
     const [activity, setActivity] = useState([]);
 
@@ -25,7 +26,7 @@ export const ActivityPage = () => {
     );
 
     return (
-        <div className="ActivityPage">
+        <div className="ActivitiesPage">
             <h1>Activities</h1>
             <ActivitySmallCard activity={activity[0]}/>
             <ActivitySmallCard activity={activity[1]}/>
