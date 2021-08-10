@@ -11,7 +11,8 @@ export const ActivitySmallCard = ({ activity }) => {
         );
     }
 
-
+    var activityDateParts = activity.activityDate.split(" ");
+    var activityDate = activityDateParts[0];
     const isActivityCycling = activity.activityType === "Cycling";
     return (
         <div className="ActivitySmallCard">
@@ -27,7 +28,7 @@ export const ActivitySmallCard = ({ activity }) => {
                     </tr>
                     <tr>
                         <th>
-                            <p className="activity-name"><Link to={{pathname: `/activity/${activity.id}`}}>{activity.activityName}</Link></p>
+                            <p className="activity-name"><Link to={{pathname: `/activity/${activity.id}`}}>{activity.activityName} - {activityDate}</Link></p>
                         </th>
                         <th>
                             <p className="activity-time">{activity.time}</p>
