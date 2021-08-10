@@ -1,7 +1,8 @@
-// import './SingleActivityPage.scss';
+import './SingleActivityPage.scss';
 import { React, useEffect, useState } from 'react';
 import { MapContainer, Polyline, TileLayer } from 'react-leaflet'
 import { useParams } from 'react-router-dom';
+import { ActivityDetailCard } from '../components/ActivityDetailCard';
 
 export const SingleActivityPage = () => {
 
@@ -30,6 +31,7 @@ export const SingleActivityPage = () => {
                 center={[52.7317535212683, -12.99685430908403]}
                 zoom={7}
                 scrollWheelZoom={false}
+                className="map-container"
             >
                 <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
                 <Polyline
@@ -40,6 +42,7 @@ export const SingleActivityPage = () => {
                     ]}
                 />
             </MapContainer>
+            <ActivityDetailCard activity={activity}/>
         </div>
     );
 }
