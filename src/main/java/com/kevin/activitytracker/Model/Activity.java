@@ -13,6 +13,7 @@ public class Activity {
     private String activityName;
     private String time;
     private double distance;
+    private String activityDate;
 
     // public Activity() {
     // }
@@ -22,6 +23,14 @@ public class Activity {
     //     this.activityName = activityName;
     //     this.time = time;
     // }
+
+    public String getActivityDate() {
+        return activityDate;
+    }
+
+    public void setActivityDate(String activityDate) {
+        this.activityDate = activityDate;
+    }
 
     public double getDistance() {
         return distance;
