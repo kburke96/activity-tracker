@@ -1,18 +1,17 @@
 .ActivitySmallCard {
-    
-    
 
-    background-color: aqua;
     margin: 80px 350px;
     
     .cycling {
         padding: 10px;
         background-color: #88d6e2;
+        border-radius: 25px;
     }
 
     .not-cycling {
         padding: 10px;
         background-color: #ff662c;
+        border-radius: 25px;
     }
 
     .activity-table {

@@ -28,10 +28,10 @@ export const ActivitiesPage = () => {
     return (
         <div className="ActivitiesPage">
             <h1>Activities</h1>
-            <ActivitySmallCard activity={activity[0]}/>
+            {/* <ActivitySmallCard activity={activity[0]}/>
             <ActivitySmallCard activity={activity[1]}/>
             <ActivitySmallCard activity={activity[2]}/>
-            <ActivitySmallCard activity={activity[3]}/>
+            <ActivitySmallCard activity={activity[3]}/> */}
             
             {/* { activity.id.map(a => <ActivitySmallCard activity={a} />)  } */}
             
