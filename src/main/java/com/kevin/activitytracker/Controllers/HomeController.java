@@ -9,6 +9,8 @@ import com.kevin.activitytracker.Repository.ActivityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -46,6 +48,11 @@ public class HomeController {
         params = "id")
     public Optional<Activity> getSingleActivity(@RequestParam("id") Long id) {
         return this.activityRepository.findById(id);
+    }
+
+    @PutMapping("/activity")
+    public Activity newActivity(@RequestBody Activity newActivity) {
+        return this.activityRepository.save(newActivity);
     }
 
     // @GetMapping("/activities")
