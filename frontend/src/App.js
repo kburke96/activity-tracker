@@ -8,6 +8,7 @@ import { ActivitiesPage } from './pages/ActivitiesPage';
 import 'leaflet/dist/leaflet.css';
 import React from 'react';
 import { SingleActivityPage } from './pages/SingleActivityPage';
+import { AddNewActivityPage } from './pages/AddNewActivityPage';
 
 function App() {
   // const App = () => {
@@ -20,6 +21,9 @@ function App() {
           </Route>
           <Route exact path="/">
             <ActivitiesPage />
+          </Route>4
+          <Route path="/newactivity">
+            <AddNewActivityPage />
           </Route>
         </Switch>
       </Router>
