@@ -1,6 +1,7 @@
 import './AddNewActivityPage.scss';
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Navbar } from '../components/Navbar';
 
 export const AddNewActivityPage = () => {
     const [id, setId] = useState('');
@@ -9,14 +10,6 @@ export const AddNewActivityPage = () => {
     const [time, setTime] = useState('');
     const [distance, setDistance] = useState('');
     const [activityDate, setActivityDate] = useState('');
-    // const [activityObj, setActivity] = useState({
-    //     id: -1,
-    //     activityType: '',
-    //     activityName: '',
-    //     time: '',
-    //     distance: '',
-    //     activityDate: ''
-    // });
 
     const handleIdChange = event => {
         setId(event.target.value)
@@ -72,6 +65,7 @@ export const AddNewActivityPage = () => {
     return (
         <div>
             <h1>Add a new Activity</h1>
+            <Navbar />
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Activity ID: </label>

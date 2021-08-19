@@ -3,6 +3,8 @@ import { React, useEffect, useState } from 'react';
 import { MapContainer, Polyline, TileLayer } from 'react-leaflet'
 import { useParams } from 'react-router-dom';
 import { ActivityDetailCard } from '../components/ActivityDetailCard';
+import { Navbar } from '../components/Navbar';
+
 
 export const SingleActivityPage = () => {
 
@@ -26,7 +28,7 @@ export const SingleActivityPage = () => {
     return (
         <div className="SingleActivityPage">
             <h1>{activity.activityName}</h1>
-
+            <Navbar />
             <MapContainer
                 center={[52.7317535212683, -12.99685430908403]}
                 zoom={7}
@@ -42,7 +44,7 @@ export const SingleActivityPage = () => {
                     ]}
                 />
             </MapContainer>
-            <ActivityDetailCard activity={activity}/>
+            <ActivityDetailCard activity={activity} />
         </div>
     );
 }

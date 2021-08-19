@@ -1,6 +1,7 @@
 import './ActivitiesPage.scss';
 import { React, useEffect, useState } from 'react';
 import { ActivitySmallCard } from '../components/ActivitySmallCard';
+import { Navbar } from '../components/Navbar';
 
 export const ActivitiesPage = () => {
     // const [activity, setActivity] = useState({activities: []});
@@ -28,6 +29,7 @@ export const ActivitiesPage = () => {
     return (
         <div className="ActivitiesPage">
             <h1>Activities</h1>
+            <Navbar />
             {/* <ActivitySmallCard activity={activity[0]}/>
             <ActivitySmallCard activity={activity[1]}/>
             <ActivitySmallCard activity={activity[2]}/>
