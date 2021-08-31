@@ -12,16 +12,13 @@ export const ActivitiesPage = () => {
             const fetchActivities = async () => {
                 const response = await fetch('http://localhost:8080/activities');
                 const data = await response.json();
-                // console.log("Data var is: " + data[0]);
-                // console.log("Response var is: " + response)
+
                 console.log(data);
-                setActivity(data);
+                setActivity(data.content);
             };
 
             fetchActivities();
             console.log("Type of activity is: " + typeof(activity))
-            // console.log("Data is: " + activity[0]);
-
         }, []
         
     );
@@ -30,12 +27,6 @@ export const ActivitiesPage = () => {
         <div className="ActivitiesPage">
             <h1>Activities</h1>
             <Navbar />
-            {/* <ActivitySmallCard activity={activity[0]}/>
-            <ActivitySmallCard activity={activity[1]}/>
-            <ActivitySmallCard activity={activity[2]}/>
-            <ActivitySmallCard activity={activity[3]}/> */}
-            
-            {/* { activity.id.map(a => <ActivitySmallCard activity={a} />)  } */}
             
             
             {activity.map(activity => <ActivitySmallCard activity={activity} />)}
