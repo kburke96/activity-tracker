@@ -5,10 +5,9 @@ import java.util.Optional;
 
 import com.kevin.activitytracker.Model.Activity;
 
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ActivityRepository extends CrudRepository<Activity, String> {
+public interface ActivityRepository extends JpaRepository<Activity, String> {
     
 
     List<Activity> findByActivityType(String activityType);

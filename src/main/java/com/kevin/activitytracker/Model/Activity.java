@@ -1,18 +1,35 @@
 package com.kevin.activitytracker.Model;
 
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 // import java.time.Duration;
 @Entity
+@Table(name="activities", schema="public")
 public class Activity {
 
     @Id
+    @GeneratedValue
+    @Column(name="id")
     private Long id;
+
+    @Column(name="activity_type")
     private String activityType;
+
+    @Column(name="title")
     private String activityName;
+
+    @Column(name="time")
     private String time;
+
+    @Column(name="distance")
     private double distance;
+
+    @Column(name="date")
     private String activityDate;
 
     // public Activity() {
