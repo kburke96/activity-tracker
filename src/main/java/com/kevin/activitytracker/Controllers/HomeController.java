@@ -1,12 +1,15 @@
 package com.kevin.activitytracker.Controllers;
 
-import java.util.List;
 import java.util.Optional;
 
 import com.kevin.activitytracker.Model.Activity;
 import com.kevin.activitytracker.Repository.ActivityRepository;
+import com.kevin.activitytracker.Service.ActivityService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,12 +22,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
     
     @Autowired
-    private ActivityRepository activityRepository;
+    private ActivityService service;
 
-    
-    public HomeController(ActivityRepository activityRepository) {
-        this.activityRepository = activityRepository;
-    }
+    @Autowired
+    ActivityRepository activityRepository;
 
     
     @GetMapping("/home")
@@ -32,9 +33,15 @@ public class HomeController {
         return "Hello world!";
     }
 
-    @GetMapping("/activities") 
-    public Iterable<Activity> getAllActivities() {
-        return this.activityRepository.findAll();
+    @GetMapping("/activities")
+    public Page<Activity> getAllActivities(@RequestParam(defaultValue = "0") int pageNo,
+                                           @RequestParam(defaultValue = "10") int pageSize,
+                                           @RequestParam(defaultValue = "id") String sortBy) {
+        
+        PageRequest pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+        Page<Activity> activities = service.getAllActivities(pageable);
+
+        return activities;
     }
 
     @GetMapping(
@@ -55,11 +62,5 @@ public class HomeController {
     public Activity newActivity(@RequestBody Activity newActivity) {
         return this.activityRepository.save(newActivity);
     }
-
-    // @GetMapping("/activities")
-    // public Iterable<Activity> getActivities() {
-    //     return this.activityRepository.findAll();
-    // }
-
     
 }
