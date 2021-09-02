@@ -37,13 +37,14 @@ export const ActivitySmallCard = ({ activity }) => {
             break;
     }
 
-    
+
     return (
-        <div className="ActivitySmallCard">
-            <div className={isActivityCycling ? 'cycling' : 'not-cycling'}>
-                <div className="logo">
-                    <img src={logo} width="50" height="50"></img>
-                </div>
+        <Link to={{ pathname: `/activity/${activity.id}` }}>
+            <div className="ActivitySmallCard">
+                <div className={isActivityCycling ? 'cycling' : 'not-cycling'}>
+                    <div className="logo">
+                        <img src={logo} width="50" height="50"></img>
+                    </div>
 
                     <table className="activity-table">
                         <tr>
@@ -56,7 +57,7 @@ export const ActivitySmallCard = ({ activity }) => {
                         </tr>
                         <tr>
                             <th>
-                                <p className="activity-name"><Link to={{ pathname: `/activity/${activity.id}` }}>{activity.activityName} - {activityDate}</Link></p>
+                                <p className="activity-name">{activity.activityName} - {activityDate}</p>
                             </th>
                             <th>
                                 <p className="activity-time">{activity.time}</p>
@@ -68,5 +69,6 @@ export const ActivitySmallCard = ({ activity }) => {
 
                 </div>
             </div>
-            );
+        </Link>
+    );
 }
