@@ -21,7 +21,26 @@
         }
     }
 
-    .not-cycling {
+    .running {
+        padding: 10px;
+        background-color: #6dc739;
+        border-radius: 25px;
+        
+
+        .logo {
+            background-color: #6dc739;
+        }
+    }
+
+    .running:hover {
+        background-color: #89d35e;
+
+        .logo {
+            background-color: #89d35e;
+        }
+    }
+
+    .cardio {
         padding: 10px;
         background-color: #ff662c;
         border-radius: 25px;
@@ -31,11 +50,65 @@
         }
     }
 
-    .not-cycling:hover {
+    .cardio:hover {
         background-color: #ff7f50;
 
         .logo {
             background-color: #ff7f50;
+        }
+    }
+
+    .yoga {
+        padding: 10px;
+        background-color: #e260cc;
+        border-radius: 25px;
+
+        .logo {
+            background-color: #e260cc;
+        }
+    }
+
+    .yoga:hover {
+        background-color: #e083d1;
+
+        .logo {
+            background-color: #e083d1;
+        }
+    }
+
+    .strength {
+        padding: 10px;
+        background-color: #e94040;
+        border-radius: 25px;
+
+        .logo {
+            background-color: #e94040;
+        }
+    }
+
+    .strength:hover {
+        background-color: #f05a5a;
+
+        .logo {
+            background-color: #f05a5a;
+        }
+    }
+
+    .hiking {
+        padding: 10px;
+        background-color: #f0f322;
+        border-radius: 25px;
+
+        .logo {
+            background-color: #f0f322;
+        }
+    }
+
+    .hiking:hover {
+        background-color: #dcdf40;
+
+        .logo {
+            background-color: #dcdf40;
         }
     }
 
