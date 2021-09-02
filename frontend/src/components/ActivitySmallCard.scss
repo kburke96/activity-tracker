@@ -6,9 +6,18 @@
         padding: 10px;
         background-color: #88d6e2;
         border-radius: 25px;
+        
 
         .logo {
             background-color: #88d6e2;
+        }
+    }
+
+    .cycling:hover {
+        background-color: #9edfe9;
+
+        .logo {
+            background-color: #9edfe9;
         }
     }
 
@@ -19,6 +28,14 @@
 
         .logo {
             background-color: #ff662c;
+        }
+    }
+
+    .not-cycling:hover {
+        background-color: #ff7f50;
+
+        .logo {
+            background-color: #ff7f50;
         }
     }
 
