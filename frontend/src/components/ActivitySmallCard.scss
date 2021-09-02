@@ -6,12 +6,20 @@
         padding: 10px;
         background-color: #88d6e2;
         border-radius: 25px;
+
+        .logo {
+            background-color: #88d6e2;
+        }
     }
 
     .not-cycling {
         padding: 10px;
         background-color: #ff662c;
         border-radius: 25px;
+
+        .logo {
+            background-color: #ff662c;
+        }
     }
 
     .activity-table {
@@ -40,4 +48,8 @@
         padding-left: 40px;
         margin-bottom: 5px;
     }
+}
+
+img {
+    opacity: 1;
 }
