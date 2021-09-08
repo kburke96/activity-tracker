@@ -1,5 +1,7 @@
 package com.kevin.activitytracker.Service;
 
+import java.util.Optional;
+
 import com.kevin.activitytracker.Model.Activity;
 import com.kevin.activitytracker.Repository.ActivityRepository;
 
@@ -26,6 +28,10 @@ public class ActivityService {
 
     public Iterable<Activity> getByType(String activityType) {
         return repository.findByActivityType(activityType);
+    }
+
+    public Optional<Activity> getById(Long id) {
+        return repository.findById(id);
     }
 
     public Activity insertActivity(Activity activity) {

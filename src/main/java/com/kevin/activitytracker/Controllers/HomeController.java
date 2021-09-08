@@ -53,12 +53,13 @@ public class HomeController {
         return service.getByType(type);
     }
 
-    // @GetMapping(
-    //     value = "/activities",
-    //     params = "id")
-    // public Optional<Activity> getSingleActivity(@RequestParam("id") Long id) {
-    //     return this.activityRepository.findById(id);
-    // }
+    @GetMapping(
+        value = "/activities",
+        params = "id")
+    public Optional<Activity> getSingleActivity(@RequestParam("id") Long id) {
+        // return this.activityRepository.findById(id);
+        return service.getById(id);
+    }
 
     @PutMapping("/activities")
     public ResponseEntity<Activity> newActivity(@RequestBody Activity inputActivity) {
