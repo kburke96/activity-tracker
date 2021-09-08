@@ -41,7 +41,7 @@ export const ActivitiesPage = () => {
             <div className="pagination-container">
                 <Pagination
                     className="pagination"
-                    count={data.totalPages - 1}
+                    count={data.totalPages}
                     page={data.number + 1}
                     siblingCount={1}
                     boundaryCount={1}
