@@ -22,8 +22,9 @@ public class ActivityService {
         } else {
             return null;
         }
+    }
 
-
-        
+    public Activity insertActivity(Activity activity) {
+        return repository.save(activity);
     }
 }

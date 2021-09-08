@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -24,8 +25,8 @@ public class HomeController {
     @Autowired
     private ActivityService service;
 
-    @Autowired
-    ActivityRepository activityRepository;
+    // @Autowired
+    // ActivityRepository activityRepository;
 
     
     @GetMapping("/home")
@@ -44,23 +45,31 @@ public class HomeController {
         return activities;
     }
 
-    @GetMapping(
-        value = "/activity",
-        params = "activityType")
-    public Iterable<Activity> getActivity(@RequestParam("activityType") String type) {
-        return this.activityRepository.findByActivityType(type);
-    }
+    // @GetMapping(
+    //     value = "/activities",
+    //     params = "activityType")
+    // public Iterable<Activity> getActivity(@RequestParam("activityType") String type) {
+    //     return this.activityRepository.findByActivityType(type);
+    // }
 
-    @GetMapping(
-        value = "/activity",
-        params = "id")
-    public Optional<Activity> getSingleActivity(@RequestParam("id") Long id) {
-        return this.activityRepository.findById(id);
-    }
+    // @GetMapping(
+    //     value = "/activities",
+    //     params = "id")
+    // public Optional<Activity> getSingleActivity(@RequestParam("id") Long id) {
+    //     return this.activityRepository.findById(id);
+    // }
 
-    @PutMapping("/activity")
-    public Activity newActivity(@RequestBody Activity newActivity) {
-        return this.activityRepository.save(newActivity);
+    @PutMapping("/activities")
+    public ResponseEntity<Activity> newActivity(@RequestBody Activity inputActivity) {
+        Activity newActivity = new Activity();
+
+        newActivity.setActivityDate(inputActivity.getActivityDate());
+        newActivity.setActivityName(inputActivity.getActivityName());
+        newActivity.setActivityType(inputActivity.getActivityType());
+        newActivity.setDistance(inputActivity.getDistance());
+        newActivity.setTime(inputActivity.getTime());
+        final Activity updatedActivity = service.insertActivity(newActivity);
+        return ResponseEntity.ok(updatedActivity);
     }
     
 }
