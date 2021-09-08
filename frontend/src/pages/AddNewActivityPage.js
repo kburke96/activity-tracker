@@ -55,7 +55,7 @@ export const AddNewActivityPage = () => {
         //         console.log(res.data);
         //     })
 
-        axios.put('http://localhost:8080/activity', dataObject)
+        axios.put('http://localhost:8080/activities', dataObject)
             .then(res => {
                 console.log(res);
             })

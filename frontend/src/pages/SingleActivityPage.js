@@ -15,7 +15,7 @@ export const SingleActivityPage = () => {
         () => {
             const fetchSingleActivity = async () => {
                 console.log("Got activityId variable: " + activityId);
-                const response = await fetch(`http://localhost:8080/activity?id=${activityId}`);
+                const response = await fetch(`http://localhost:8080/activities?id=${activityId}`);
                 const data = await response.json();
                 setActivity(data);
             };
