@@ -24,6 +24,10 @@ public class ActivityService {
         }
     }
 
+    public Iterable<Activity> getByType(String activityType) {
+        return repository.findByActivityType(activityType);
+    }
+
     public Activity insertActivity(Activity activity) {
         return repository.save(activity);
     }

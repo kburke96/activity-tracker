@@ -45,12 +45,13 @@ public class HomeController {
         return activities;
     }
 
-    // @GetMapping(
-    //     value = "/activities",
-    //     params = "activityType")
-    // public Iterable<Activity> getActivity(@RequestParam("activityType") String type) {
-    //     return this.activityRepository.findByActivityType(type);
-    // }
+    @GetMapping(
+        value = "/activities",
+        params = "activityType")
+    public Iterable<Activity> getActivity(@RequestParam("activityType") String type) {
+        // return this.activityRepository.findByActivityType(type);
+        return service.getByType(type);
+    }
 
     // @GetMapping(
     //     value = "/activities",
