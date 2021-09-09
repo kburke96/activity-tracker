@@ -63,13 +63,15 @@ public class HomeController {
 
     @PutMapping("/activities")
     public ResponseEntity<Activity> newActivity(@RequestBody Activity inputActivity) {
-        Activity newActivity = new Activity();
 
-        newActivity.setActivityDate(inputActivity.getActivityDate());
-        newActivity.setActivityName(inputActivity.getActivityName());
-        newActivity.setActivityType(inputActivity.getActivityType());
-        newActivity.setDistance(inputActivity.getDistance());
-        newActivity.setTime(inputActivity.getTime());
+        Activity newActivity = Activity.builder()
+                        .activityType(inputActivity.getActivityType())
+                        .activityName(inputActivity.getActivityName())
+                        .activityDate(inputActivity.getActivityDate())
+                        .time(inputActivity.getTime())
+                        .distance(inputActivity.getDistance())
+                        .build();
+
         final Activity updatedActivity = service.insertActivity(newActivity);
         return ResponseEntity.ok(updatedActivity);
     }
