@@ -8,9 +8,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 // import java.time.Duration;
 @Entity
 @Table(name="activities", schema="public")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Getter
+@Setter
 public class Activity {
 
     @Id
@@ -42,48 +53,48 @@ public class Activity {
     //     this.time = time;
     // }
 
-    public String getActivityDate() {
-        return activityDate;
-    }
+    // public String getActivityDate() {
+    //     return activityDate;
+    // }
 
-    public void setActivityDate(String activityDate) {
-        this.activityDate = activityDate;
-    }
+    // public void setActivityDate(String activityDate) {
+    //     this.activityDate = activityDate;
+    // }
 
-    public double getDistance() {
-        return distance;
-    }
+    // public double getDistance() {
+    //     return distance;
+    // }
 
-    public void setDistance(double distance) {
-        this.distance = distance;
-    }
+    // public void setDistance(double distance) {
+    //     this.distance = distance;
+    // }
 
-    public Long getId() {
-        return id;
-    }
+    // public Long getId() {
+    //     return id;
+    // }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    // public void setId(Long id) {
+    //     this.id = id;
+    // }
 
-    public String getActivityType() {
-        return activityType;
-    }
-    public void setActivityType(String activityType) {
-        this.activityType = activityType;
-    }
-    public String getActivityName() {
-        return activityName;
-    }
-    public void setActivityName(String activityName) {
-        this.activityName = activityName;
-    }
-    public String getTime() {
-        return time;
-    }
-    public void setTime(String time) {
-        this.time = time;
-    }
+    // public String getActivityType() {
+    //     return activityType;
+    // }
+    // public void setActivityType(String activityType) {
+    //     this.activityType = activityType;
+    // }
+    // public String getActivityName() {
+    //     return activityName;
+    // }
+    // public void setActivityName(String activityName) {
+    //     this.activityName = activityName;
+    // }
+    // public String getTime() {
+    //     return time;
+    // }
+    // public void setTime(String time) {
+    //     this.time = time;
+    // }
 
     @Override
     public String toString() {
