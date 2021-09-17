@@ -7,10 +7,9 @@ import com.kevin.activitytracker.Model.Activity;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ActivityRepository extends JpaRepository<Activity, String> {
+public interface ActivityRepository extends JpaRepository<Activity, Long> {
     
 
     List<Activity> findByActivityType(String activityType);
-
     Optional<Activity> findById(Long id);
 }
