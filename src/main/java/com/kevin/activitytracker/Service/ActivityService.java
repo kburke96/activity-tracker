@@ -37,4 +37,14 @@ public class ActivityService {
     public Activity insertActivity(Activity activity) {
         return repository.save(activity);
     }
+
+    public Optional<Activity> deleteActivity(Long id) {
+        if (getById(id).isEmpty()) {
+            return null;
+        } else {
+            Optional<Activity> activity = getById(id);
+            repository.deleteById(id);
+            return activity;
+        }
+    }
 }

@@ -2,8 +2,8 @@ package com.kevin.activitytracker.Controllers;
 
 import java.util.Optional;
 
+import com.kevin.activitytracker.Exception.ActivityNotFoundException;
 import com.kevin.activitytracker.Model.Activity;
-import com.kevin.activitytracker.Repository.ActivityRepository;
 import com.kevin.activitytracker.Service.ActivityService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -74,6 +76,20 @@ public class HomeController {
 
         final Activity updatedActivity = service.insertActivity(newActivity);
         return ResponseEntity.ok(updatedActivity);
+    }
+
+    @DeleteMapping(value="/activities/{id}")
+    public ResponseEntity<Optional<Activity>> deleteActivity(@PathVariable Long id) throws ActivityNotFoundException {
+        Optional<Activity> deletedActivity = service.deleteActivity(id);
+
+        if (deletedActivity == null) {
+            throw new ActivityNotFoundException("Activity ID: " + id + " not found.");
+        } else {
+            return ResponseEntity.ok(deletedActivity);
+            
+        }
+        
+        
     }
     
 }
