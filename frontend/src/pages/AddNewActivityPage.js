@@ -55,7 +55,12 @@ export const AddNewActivityPage = () => {
         //         console.log(res.data);
         //     })
 
-        axios.put('http://localhost:8080/activities', dataObject)
+        axios.put('http://localhost:8080/activities', dataObject, {
+            auth: {
+                username: 'admin',
+                password: 'password'
+            }
+            })
             .then(res => {
                 console.log(res);
             })

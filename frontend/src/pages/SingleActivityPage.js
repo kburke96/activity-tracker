@@ -11,11 +11,20 @@ export const SingleActivityPage = () => {
     const [activity, setActivity] = useState([]);
     const { activityId } = useParams();
 
+    let username = 'admin';
+    let password = 'password';
+
+    let headers = new Headers();
+    headers.set('Authorization', 'Basic ' + btoa(username + ":" + password));
+
     useEffect(
         () => {
             const fetchSingleActivity = async () => {
                 console.log("Got activityId variable: " + activityId);
-                const response = await fetch(`http://localhost:8080/activities?id=${activityId}`);
+                const response = await fetch(`http://localhost:8080/activities?id=${activityId}`, {
+                    method:'GET',
+                    headers: headers
+                });
                 const data = await response.json();
                 setActivity(data);
             };

@@ -9,8 +9,17 @@ export const ActivitiesPage = () => {
     const [data, setData] = useState([]);
     const [url, setUrl] = useState('http://localhost:8080/activities');
 
+    let username = 'admin';
+    let password = 'password';
+
+    let headers = new Headers();
+    headers.set('Authorization', 'Basic ' + btoa(username + ":" + password));
+
     const fetchActivities = async () => {
-        const response = await fetch(url);
+        const response = await fetch(url, {
+            method:'GET',
+            headers: headers
+        });
         const data = await response.json();
 
         console.log(data);
