@@ -21,6 +21,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.AdditionalAnswers.*;
 
@@ -77,4 +78,15 @@ public class ActivityServiceTest {
         assertEquals(returnedActivityPage.getContent(), activityList);
 
     }
+
+    @Test
+    public void givenGetByIdShouldReturnActivity() {
+
+        when(repo.findById(1L)).thenReturn(Optional.of(activity1));
+
+        Optional<Activity> returnedActivity = service.getById(1L);
+
+        assertEquals(Optional.of(activity1), returnedActivity);
+    }
+
 }
