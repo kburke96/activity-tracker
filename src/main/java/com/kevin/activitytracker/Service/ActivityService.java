@@ -5,22 +5,25 @@ import java.util.Optional;
 import com.kevin.activitytracker.Model.Activity;
 import com.kevin.activitytracker.Repository.ActivityRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class ActivityService {
-    
-    @Autowired
-    public ActivityRepository repository;
+
+    // Use constructor-based injection instead of field-based
+    // @RequiredArgsContructor from Lombok removes some boilerplate
+    private final ActivityRepository repository;
 
     public Page<Activity> getAllActivities(Pageable pageable) {
-        Page<Activity> pagedResult = repository.findAll(pageable);
+        Page<Activity> pageResult = repository.findAll(pageable);
 
-        if(pagedResult.hasContent()) {
-            return pagedResult;
+        if (pageResult.hasContent()) {
+            return pageResult;
         } else {
             return null;
         }

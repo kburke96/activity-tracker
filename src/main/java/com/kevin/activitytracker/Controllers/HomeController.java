@@ -20,21 +20,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @CrossOrigin()
+@RequiredArgsConstructor
 public class HomeController {
     
-    @Autowired
-    private ActivityService service;
-
-    // @Autowired
-    // ActivityRepository activityRepository;
-
-    
-    @GetMapping("/home")
-    public String home() {
-        return "Hello world!";
-    }
+    private final ActivityService service;
 
     @GetMapping("/activities")
     public Page<Activity> getAllActivities(@RequestParam(defaultValue = "0") int pageNo,
