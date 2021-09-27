@@ -13,7 +13,8 @@ The project exposes my activity data (runs, cycles, hikes...) as a REST API. The
 * Lombok
 * React JS
 
-
+![CodeQL Analysis](https://github.com/kburke96/activity-tracker/actions/workflows/codeql-analysis.yml/badge.svg)
+![SonarCloud](https://github.com/kburke96/activity-tracker/actions/workflows/build.yml/badge.svg)
 
 
 ## Installation
