@@ -1,8 +1,8 @@
 package com.kevin.activitytracker;
 
-import com.kevin.activitytracker.Model.Activity;
-import com.kevin.activitytracker.Repository.ActivityRepository;
-import com.kevin.activitytracker.Service.ActivityService;
+import com.kevin.activitytracker.model.Activity;
+import com.kevin.activitytracker.repository.ActivityRepository;
+import com.kevin.activitytracker.service.ActivityService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
