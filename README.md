@@ -12,30 +12,26 @@ The project exposes my activity data (runs, cycles, hikes...) as a REST API. The
 * Maven 3.8
 * Lombok
 * React JS
+* Docker & docker-compose
 
 ![CodeQL Analysis](https://github.com/kburke96/activity-tracker/actions/workflows/codeql-analysis.yml/badge.svg)
 ![SonarCloud](https://github.com/kburke96/activity-tracker/actions/workflows/build.yml/badge.svg)
 
 
-## Installation
+## Running with docker-compose
 
 1. Clone the repository
 ```bash
 git clone https://github.com/kburke96/activity-tracker.git
 ```
 
-2. Use Maven to run the Spring Boot application. This starts the rest API on port 8080
+2. Use docker-compose to start a DB service and a backend service
 ```bash
-./mvnw spring-boot:run
+docker-compose up --build
 ```
+This will start a Postgres database container initialised with some data, and a Spring Boot container which makes the REST API available on localhost:8080.
 
-3. In a separate terminal, run the React frontend on port 3000
-```bash
-cd frontend
-npm start
-```
 
 ## Warnings
 
-* The above instructions to run the Spring Boot app will only work on an environment where Postgres is installed. I am working on creating a Docker image of the database layer at the moment.
 * OAuth2.0 and JWT have been recently added to the backend - the React frontend has not yet been updated to deal with this change.
