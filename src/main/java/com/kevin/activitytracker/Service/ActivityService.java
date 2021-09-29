@@ -43,7 +43,7 @@ public class ActivityService {
 
     public Optional<Activity> deleteActivity(Long id) {
         if (getById(id).isEmpty()) {
-            return null;
+            return Optional.empty();
         } else {
             Optional<Activity> activity = getById(id);
             repository.deleteById(id);

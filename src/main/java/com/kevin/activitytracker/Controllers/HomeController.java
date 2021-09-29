@@ -74,11 +74,10 @@ public class HomeController {
     public ResponseEntity<Optional<Activity>> deleteActivity(@PathVariable Long id) throws ActivityNotFoundException {
         Optional<Activity> deletedActivity = service.deleteActivity(id);
 
-        if (deletedActivity == null) {
-            throw new ActivityNotFoundException("Activity ID: " + id + " not found.");
-        } else {
+        if (deletedActivity.isPresent()) {
             return ResponseEntity.ok(deletedActivity);
-            
+        } else {
+            throw new ActivityNotFoundException("Activity ID: " + id + " not found.");
         }
         
         
