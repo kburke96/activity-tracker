@@ -2,6 +2,7 @@ package com.kevin.activitytracker.controllers;
 
 import java.util.Optional;
 
+import com.kevin.activitytracker.controllers.dtos.ActivityDTO;
 import com.kevin.activitytracker.exception.ActivityNotFoundException;
 import com.kevin.activitytracker.model.Activity;
 import com.kevin.activitytracker.service.ActivityService;
@@ -56,7 +57,7 @@ public class HomeController {
     }
 
     @PutMapping("/activities")
-    public ResponseEntity<Activity> newActivity(@RequestBody Activity inputActivity) {
+    public ResponseEntity<Activity> newActivity(@RequestBody ActivityDTO inputActivity) {
 
         Activity newActivity = Activity.builder()
                         .activityType(inputActivity.getActivityType())
