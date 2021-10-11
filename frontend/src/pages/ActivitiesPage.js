@@ -4,16 +4,13 @@ import { ActivitySmallCard } from '../components/ActivitySmallCard';
 import { Navbar } from '../components/Navbar';
 import Pagination from "@material-ui/lab/Pagination";
 
-export const ActivitiesPage = () => {
+export const ActivitiesPage = ({ setToken }) => {
     const [activity, setActivity] = useState([]);
     const [data, setData] = useState([]);
     const [url, setUrl] = useState('http://localhost:8080/activities');
 
-    let username = 'admin';
-    let password = 'password';
-
     let headers = new Headers();
-    headers.set('Authorization', 'Basic ' + btoa(username + ":" + password));
+    headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token').replace(/"/g, ''));
 
     const fetchActivities = async () => {
         const response = await fetch(url, {
@@ -36,7 +33,6 @@ export const ActivitiesPage = () => {
     useEffect(
         () => {
             fetchActivities();
-            console.log("Type of activity is: " + typeof (activity))
         }, [url]
 
     );

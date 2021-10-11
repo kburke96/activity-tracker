@@ -6,13 +6,33 @@ import {
 } from "react-router-dom";
 import { ActivitiesPage } from './pages/ActivitiesPage';
 import 'leaflet/dist/leaflet.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { SingleActivityPage } from './pages/SingleActivityPage';
 import { AddNewActivityPage } from './pages/AddNewActivityPage';
 import { HomePage } from './pages/HomePage';
+import Login from './components/login/Login';
+import useToken from './useToken';
+
+// function setToken(userToken) {
+//   sessionStorage.setItem('token', JSON.stringify(userToken));
+// }
+
+// function getToken() {
+//   const tokenString = sessionStorage.getItem('token');
+//   const userToken = JSON.parse(tokenString);
+//   return userToken?.token
+// }
+
+
 
 function App() {
-  // const App = () => {
+  const { token, setToken } = useToken();
+
+  console.log("Token variable is set to: " + token);
+
+  if(!sessionStorage.getItem('token')) {
+    return <Login setToken={setToken} />
+  }
   return (
     <div className="App">
       <Router>
@@ -24,8 +44,8 @@ function App() {
             <SingleActivityPage />
           </Route>
           <Route exact path="/activities">
-            <ActivitiesPage />
-          </Route>4
+            <ActivitiesPage setToken={setToken}/>
+          </Route>
           <Route path="/newactivity">
             <AddNewActivityPage />
           </Route>

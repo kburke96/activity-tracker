@@ -49,16 +49,10 @@ export const AddNewActivityPage = () => {
             distance,
             activityDate
         };
-        // axios.put('http://localhost:8080/activity', mockData)
-        //     .then(res => {
-        //         console.log(res);
-        //         console.log(res.data);
-        //     })
 
         axios.put('http://localhost:8080/activities', dataObject, {
-            auth: {
-                username: 'admin',
-                password: 'password'
+            headers: {
+                Authorization: "Bearer " + sessionStorage.getItem('token').replace(/"/g, '')
             }
             })
             .then(res => {

@@ -11,11 +11,8 @@ export const SingleActivityPage = () => {
     const [activity, setActivity] = useState([]);
     const { activityId } = useParams();
 
-    let username = 'admin';
-    let password = 'password';
-
     let headers = new Headers();
-    headers.set('Authorization', 'Basic ' + btoa(username + ":" + password));
+    headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token').replace(/"/g, ''));
 
     useEffect(
         () => {
