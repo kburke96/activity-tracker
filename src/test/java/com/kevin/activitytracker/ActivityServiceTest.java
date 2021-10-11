@@ -16,6 +16,7 @@ import org.springframework.data.domain.Sort;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -86,6 +87,38 @@ public class ActivityServiceTest {
 
         Optional<Activity> returnedActivity = service.getById(1L);
 
+        assertEquals(Optional.of(activity1), returnedActivity);
+    }
+
+    @Test
+    public void givenGetByTypeShouldReturnActivtiesOfThatType() {
+
+        when(repo.findByActivityType("Running")).thenReturn(List.of(activity1));
+        Iterable<Activity> returnedActivities = service.getByType("Running");
+        assertEquals(List.of(activity1), returnedActivities);
+    }
+
+    @Test
+    public void givenNoActivitiesExistThenGetAllActivitiesShouldReturnNull() {
+        PageRequest pageable = PageRequest.of(1, 3, Sort.by("activityName"));
+        when(repo.findAll(pageable)).thenReturn(Page.empty());
+
+        Page<Activity> returnedPage = service.getAllActivities(pageable);
+
+        assertNull(returnedPage);
+    }
+
+    @Test
+    public void givenIdIsEmptyShouldReturnEmptyOptional() {
+        when(repo.findById(1L)).thenReturn(Optional.empty());
+        Optional<Activity> returnedActivity = service.deleteActivity(1L);
+        assertEquals(Optional.empty(), returnedActivity);
+    }
+
+    @Test
+    public void givenIdIsValidReturnDeletedActivity() {
+        when(repo.findById(1L)).thenReturn(Optional.of(activity1));
+        Optional<Activity> returnedActivity = service.deleteActivity(1L);
         assertEquals(Optional.of(activity1), returnedActivity);
     }
 
