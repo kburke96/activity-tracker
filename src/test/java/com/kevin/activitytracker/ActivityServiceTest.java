@@ -1,5 +1,6 @@
 package com.kevin.activitytracker;
 
+import com.kevin.activitytracker.exception.ActivityNotFoundException;
 import com.kevin.activitytracker.model.Activity;
 import com.kevin.activitytracker.repository.ActivityRepository;
 import com.kevin.activitytracker.service.ActivityService;
@@ -17,6 +18,7 @@ import org.springframework.data.domain.Sort;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -85,9 +87,9 @@ public class ActivityServiceTest {
 
         when(repo.findById(1L)).thenReturn(Optional.of(activity1));
 
-        Optional<Activity> returnedActivity = service.getById(1L);
+        Activity returnedActivity = service.getById(1L);
 
-        assertEquals(Optional.of(activity1), returnedActivity);
+        assertEquals(activity1, returnedActivity);
     }
 
     @Test
@@ -111,15 +113,20 @@ public class ActivityServiceTest {
     @Test
     public void givenIdIsEmptyShouldReturnEmptyOptional() {
         when(repo.findById(1L)).thenReturn(Optional.empty());
-        Optional<Activity> returnedActivity = service.deleteActivity(1L);
-        assertEquals(Optional.empty(), returnedActivity);
+        
+        Exception thrown = assertThrows(
+            ActivityNotFoundException.class,
+            () -> service.deleteActivity(1L));
+
+       
+        assertEquals("Activity ID 1 not found.", thrown.getMessage());
     }
 
     @Test
     public void givenIdIsValidReturnDeletedActivity() {
         when(repo.findById(1L)).thenReturn(Optional.of(activity1));
-        Optional<Activity> returnedActivity = service.deleteActivity(1L);
-        assertEquals(Optional.of(activity1), returnedActivity);
+        Activity returnedActivity = service.deleteActivity(1L);
+        assertEquals(activity1, returnedActivity);
     }
 
 }
