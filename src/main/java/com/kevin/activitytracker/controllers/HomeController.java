@@ -1,7 +1,5 @@
 package com.kevin.activitytracker.controllers;
 
-import java.util.Optional;
-
 import com.kevin.activitytracker.controllers.dtos.ActivityDTO;
 import com.kevin.activitytracker.exception.ActivityNotFoundException;
 import com.kevin.activitytracker.model.Activity;
@@ -51,8 +49,7 @@ public class HomeController {
     @GetMapping(
         value = "/activities",
         params = "id")
-    public Optional<Activity> getSingleActivity(@RequestParam("id") Long id) {
-        // return this.activityRepository.findById(id);
+    public Activity getSingleActivity(@RequestParam("id") Long id) {
         return service.getById(id);
     }
 
@@ -72,15 +69,10 @@ public class HomeController {
     }
 
     @DeleteMapping(value="/activities/{id}")
-    public ResponseEntity<Optional<Activity>> deleteActivity(@PathVariable Long id) throws ActivityNotFoundException {
-        Optional<Activity> deletedActivity = service.deleteActivity(id);
+    public ResponseEntity<Activity> deleteActivity(@PathVariable Long id) throws ActivityNotFoundException {
+        Activity deletedActivity = service.deleteActivity(id);
 
-        if (deletedActivity.isPresent()) {
-            return ResponseEntity.ok(deletedActivity);
-        } else {
-            throw new ActivityNotFoundException("Activity ID: " + id + " not found.");
-        }
-        
+        return ResponseEntity.ok(deletedActivity);
         
     }
     

@@ -1,7 +1,6 @@
 package com.kevin.activitytracker.service;
 
-import java.util.Optional;
-
+import com.kevin.activitytracker.exception.ActivityNotFoundException;
 import com.kevin.activitytracker.model.Activity;
 import com.kevin.activitytracker.repository.ActivityRepository;
 
@@ -33,21 +32,18 @@ public class ActivityService {
         return repository.findByActivityType(activityType);
     }
 
-    public Optional<Activity> getById(Long id) {
-        return repository.findById(id);
+    public Activity getById(Long id) {
+        return repository.findById(id)
+            .orElseThrow(() -> new ActivityNotFoundException("Activity ID " + id + " not found."));
     }
 
     public Activity insertActivity(Activity activity) {
         return repository.save(activity);
     }
 
-    public Optional<Activity> deleteActivity(Long id) {
-        if (getById(id).isEmpty()) {
-            return Optional.empty();
-        } else {
-            Optional<Activity> activity = getById(id);
-            repository.deleteById(id);
-            return activity;
-        }
+    public Activity deleteActivity(Long id) {
+        Activity toBeDeleted = getById(id);
+        repository.delete(toBeDeleted);
+        return toBeDeleted;
     }
 }
