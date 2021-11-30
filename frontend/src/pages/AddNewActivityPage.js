@@ -10,6 +10,8 @@ export const AddNewActivityPage = () => {
     const [time, setTime] = useState('');
     const [distance, setDistance] = useState('');
     const [activityDate, setActivityDate] = useState('');
+    const baseUrl = process.env.REACT_APP_BACKEND_IP;
+    const activitiesUrl = "http://" + baseUrl + ":8080/activities";
 
     const handleIdChange = event => {
         setId(event.target.value)
@@ -49,8 +51,7 @@ export const AddNewActivityPage = () => {
             distance,
             activityDate
         };
-
-        axios.put('http://localhost:8080/activities', dataObject, {
+        axios.put(activitiesUrl, dataObject, {
             headers: {
                 Authorization: "Bearer " + sessionStorage.getItem('token').replace(/"/g, '')
             }

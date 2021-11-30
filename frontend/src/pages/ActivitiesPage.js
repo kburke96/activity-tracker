@@ -5,9 +5,11 @@ import { Navbar } from '../components/Navbar';
 import Pagination from "@material-ui/lab/Pagination";
 
 export const ActivitiesPage = ({ setToken }) => {
+    const baseUrl = process.env.REACT_APP_BACKEND_IP;
+    const activitiesUrl = "http://" + baseUrl + ":8080/activities";
     const [activity, setActivity] = useState([]);
     const [data, setData] = useState([]);
-    const [url, setUrl] = useState('http://localhost:8080/activities');
+    const [url, setUrl] = useState(activitiesUrl);
 
     let headers = new Headers();
     headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token').replace(/"/g, ''));
@@ -26,7 +28,7 @@ export const ActivitiesPage = ({ setToken }) => {
 
     const handlePageChange = (e, value) => {
         const selectedPage = value - 1;
-        setUrl('http://localhost:8080/activities?pageNo=' + selectedPage);
+        setUrl(activitiesUrl + '?pageNo=' + selectedPage);
     };
 
 

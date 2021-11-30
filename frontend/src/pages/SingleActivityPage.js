@@ -10,6 +10,8 @@ export const SingleActivityPage = () => {
 
     const [activity, setActivity] = useState([]);
     const { activityId } = useParams();
+    const baseUrl = process.env.REACT_APP_BACKEND_IP;
+    const activitiesUrl = "http://" + baseUrl + ":8080/activities?id=";
 
     let headers = new Headers();
     headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token').replace(/"/g, ''));
@@ -18,7 +20,8 @@ export const SingleActivityPage = () => {
         () => {
             const fetchSingleActivity = async () => {
                 console.log("Got activityId variable: " + activityId);
-                const response = await fetch(`http://localhost:8080/activities?id=${activityId}`, {
+		const fullUrl = activitiesUrl + activityId;
+                const response = await fetch(`${fullUrl}`, {
                     method:'GET',
                     headers: headers
                 });

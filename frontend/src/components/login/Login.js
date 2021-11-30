@@ -5,7 +5,10 @@ import PropTypes from 'prop-types';
 async function loginUser(credentials) {
   console.log("Running fetch from loginUser()");
   console.log("Credentials: " + JSON.stringify(credentials));
-  const data = await fetch('http://localhost:8080/api/auth/signin', {
+  const baseUrl = process.env.REACT_APP_BACKEND_IP;
+  console.log("baseURL: " + baseUrl);
+  const signInUrl = "http://" + baseUrl + ":8080/api/auth/signin";
+  const data = await fetch(signInUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
