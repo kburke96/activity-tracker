@@ -29,7 +29,7 @@ import java.util.Optional;
 import static org.mockito.AdditionalAnswers.*;
 
 @ExtendWith(MockitoExtension.class)
-public class ActivityServiceTest {
+class ActivityServiceTest {
 
     @Mock
     private ActivityRepository repo;
@@ -46,7 +46,7 @@ public class ActivityServiceTest {
     List<Activity> activityList;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         service = new ActivityService(repo);
 
         activityList = new ArrayList<Activity>();
@@ -56,7 +56,7 @@ public class ActivityServiceTest {
     }
 
     @Test
-    public void savedActivityHasTitle() {
+    void savedActivityHasTitle() {
         Activity activity = Activity.builder().activityName("title").activityType("cycling").activityDate("2021")
                 .distance(15.00).time("20:00").build();
 
@@ -68,7 +68,7 @@ public class ActivityServiceTest {
     }
 
     @Test
-    public void givenGetAllActivitiesShouldReturnAllActivities() {
+    void givenGetAllActivitiesShouldReturnAllActivities() {
 
         //Create a new Page<Activity> from the List of activities
         PageRequest pageable = PageRequest.of(1, 3, Sort.by("activityName"));
@@ -83,7 +83,7 @@ public class ActivityServiceTest {
     }
 
     @Test
-    public void givenGetByIdShouldReturnActivity() {
+    void givenGetByIdShouldReturnActivity() {
 
         when(repo.findById(1L)).thenReturn(Optional.of(activity1));
 
@@ -93,7 +93,7 @@ public class ActivityServiceTest {
     }
 
     @Test
-    public void givenGetByTypeShouldReturnActivtiesOfThatType() {
+    void givenGetByTypeShouldReturnActivtiesOfThatType() {
 
         when(repo.findByActivityType("Running")).thenReturn(List.of(activity1));
         Iterable<Activity> returnedActivities = service.getByType("Running");
@@ -101,7 +101,7 @@ public class ActivityServiceTest {
     }
 
     @Test
-    public void givenNoActivitiesExistThenGetAllActivitiesShouldReturnNull() {
+    void givenNoActivitiesExistThenGetAllActivitiesShouldReturnNull() {
         PageRequest pageable = PageRequest.of(1, 3, Sort.by("activityName"));
         when(repo.findAll(pageable)).thenReturn(Page.empty());
 
@@ -111,7 +111,7 @@ public class ActivityServiceTest {
     }
 
     @Test
-    public void givenIdIsEmptyShouldReturnEmptyOptional() {
+    void givenIdIsEmptyShouldReturnEmptyOptional() {
         when(repo.findById(1L)).thenReturn(Optional.empty());
         
         Exception thrown = assertThrows(
@@ -123,7 +123,7 @@ public class ActivityServiceTest {
     }
 
     @Test
-    public void givenIdIsValidReturnDeletedActivity() {
+    void givenIdIsValidReturnDeletedActivity() {
         when(repo.findById(1L)).thenReturn(Optional.of(activity1));
         Activity returnedActivity = service.deleteActivity(1L);
         assertEquals(activity1, returnedActivity);
