@@ -33,16 +33,13 @@ public class HomeController {
                                            @RequestParam(defaultValue = "id") String sortBy) {
         
         PageRequest pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
-        Page<Activity> activities = service.getAllActivities(pageable);
-
-        return activities;
+        return service.getAllActivities(pageable);
     }
 
     @GetMapping(
         value = "/activities",
         params = "activityType")
     public Iterable<Activity> getActivity(@RequestParam("activityType") String type) {
-        // return this.activityRepository.findByActivityType(type);
         return service.getByType(type);
     }
 
@@ -55,7 +52,6 @@ public class HomeController {
 
     @PutMapping("/activities")
     public ResponseEntity<Activity> newActivity(@RequestBody ActivityDTO inputActivity) {
-
         Activity newActivity = Activity.builder()
                         .activityType(inputActivity.getActivityType())
                         .activityName(inputActivity.getActivityName())
@@ -71,9 +67,7 @@ public class HomeController {
     @DeleteMapping(value="/activities/{id}")
     public ResponseEntity<Activity> deleteActivity(@PathVariable Long id) throws ActivityNotFoundException {
         Activity deletedActivity = service.deleteActivity(id);
-
         return ResponseEntity.ok(deletedActivity);
-        
     }
     
 }
