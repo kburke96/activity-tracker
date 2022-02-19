@@ -39,6 +39,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
 		authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+		authenticationManagerBuilder.inMemoryAuthentication()
+         .passwordEncoder(passwordEncoder())
+         .withUser("spring")
+         .password(passwordEncoder().encode("secret"))
+         .roles("USER");
 	}
 
 	@Bean
