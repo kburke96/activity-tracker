@@ -2,6 +2,7 @@ package com.kevin.activitytracker;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
@@ -24,13 +25,15 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(HomeController.class)
@@ -61,6 +64,7 @@ public class ActivityControllerTest {
     PageRequest pageable = PageRequest.of(0, 10, Sort.by("id"));
 
     List<Activity> listOfActivities = Stream.of(activity1, activity2, activity3).collect(Collectors.toList());
+    List<Activity> listOfRunningActivities = Stream.of(activity1).collect(Collectors.toList());
 
     Page<Activity> allActivitiesPage = new PageImpl<>(listOfActivities);
     
@@ -79,9 +83,88 @@ public class ActivityControllerTest {
 
     @WithMockUser(value = "spring")
     @Test
-    public void givenAuthRequestOnPrivateService_shouldSucceedWith200() throws Exception {
+    void givenAuthRequestOnPrivateService_shouldSucceedWith200() throws Exception {
         mockMvc.perform(get("/activities").contentType(MediaType.APPLICATION_JSON))
           .andExpect(status().isOk());
     }
     
+    @WithMockUser(value = "spring")
+    @Test
+    void getByActivityTypeTest() throws Exception {
+        when(activityService.getByType("Running")).thenReturn(listOfRunningActivities);
+
+        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/activities?activityType=Running")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .characterEncoding("UTF-8");
+        
+        MvcResult result = this.mockMvc.perform(builder)
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+        
+        String expectedContent = "{\"id\":1,\"activityType\":\"Running\",\"activityName\":\"First name\",\"time\":\"15:00\",\"distance\":15.0,\"activityDate\":\"2021\"}";
+        assertTrue(result.getResponse().getContentAsString().contains(expectedContent));
+    }
+
+    @WithMockUser(value = "spring")
+    @Test
+    void getByActivityIdTest() throws Exception {
+        when(activityService.getById(1L)).thenReturn(activity1);
+
+        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/activities?id=1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .characterEncoding("UTF-8");
+        
+        MvcResult result = this.mockMvc.perform(builder)
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+        
+        String expectedContent = "{\"id\":1,\"activityType\":\"Running\",\"activityName\":\"First name\",\"time\":\"15:00\",\"distance\":15.0,\"activityDate\":\"2021\"}";
+        assertTrue(result.getResponse().getContentAsString().contains(expectedContent));
+    }
+
+
+    @WithMockUser(value = "spring")
+    @Test
+    void putNewActivityTest() throws Exception {
+        when(activityService.insertActivity(any())).thenReturn(activity1);
+
+        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.put("/activities")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .characterEncoding("UTF-8")
+                .content(activity1.toJsonString());
+        
+        String expectedContent = "{\"id\":1,\"activityType\":\"Running\",\"activityName\":\"First name\",\"time\":\"15:00\",\"distance\":15.0,\"activityDate\":\"2021\"}";
+
+        MvcResult result = this.mockMvc.perform(builder)
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+        
+        assertTrue(result.getResponse().getContentAsString().contains(expectedContent));
+    }
+
+    @WithMockUser(value = "spring")
+    @Test
+    void deleteActivityTest() throws Exception {
+        when(activityService.deleteActivity(any())).thenReturn(activity1);
+
+        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.delete("/activities/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .characterEncoding("UTF-8");
+        
+        String expectedContent = "{\"id\":1,\"activityType\":\"Running\",\"activityName\":\"First name\",\"time\":\"15:00\",\"distance\":15.0,\"activityDate\":\"2021\"}";
+
+        MvcResult result = this.mockMvc.perform(builder)
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+        
+        assertTrue(result.getResponse().getContentAsString().contains(expectedContent));
+    }
 }
