@@ -50,6 +50,10 @@ public class Activity {
         return "Activity [activityName=" + activityName + ", activityType=" + activityType + ", distance=" + distance
                 + ", id=" + id + ", time=" + time + "]";
     }
+
+    public String toJsonString() {
+        return "{\"activityType\":\"" + activityType + "\",\"activityName\":\"" + activityName + "\",\"time\":\"" + time + "\",\"distance\":"+ distance + ",\"activityDate\":\""+ activityDate + "\"}";
+    }
  
     
 
