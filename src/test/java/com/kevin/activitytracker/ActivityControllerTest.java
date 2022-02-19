@@ -1,5 +1,7 @@
 package com.kevin.activitytracker;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
@@ -21,6 +23,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -65,8 +68,13 @@ public class ActivityControllerTest {
     @Test
     void getAllActivitiesTest() throws Exception {
         when(activityService.getAllActivities(pageable)).thenReturn(allActivitiesPage);
-        String expectedContent = "{\"content\":[{\"id\":1,\"activityType\":\"Running\",\"activityName\":\"First name\",\"time\":\"15:00\",\"distance\":15.0,\"activityDate\":\"2021\"},{\"id\":2,\"activityType\":\"Cycling\",\"activityName\":\"Second name\",\"time\":\"5:00\",\"distance\":5.0,\"activityDate\":\"2021\"},{\"id\":3,\"activityType\":\"Hiking\",\"activityName\":\"Third name\",\"time\":\"125:00\",\"distance\":125.0,\"activityDate\":\"2021\"}],\"pageable\":\"INSTANCE\",\"totalPages\":1,\"totalElements\":3,\"last\":true,\"size\":3,\"number\":0,\"sort\":{\"sorted\":false,\"unsorted\":true,\"empty\":true},\"numberOfElements\":3,\"first\":true,\"empty\":false}";
-        this.mockMvc.perform(get("/activities")).andDo(print()).andExpect(content().string(expectedContent));
+        String expectedContent = "{\"content\":[{\"id\":1,\"activityType\":\"Running\",\"activityName\":\"First name\",\"time\":\"15:00\",\"distance\":15.0,\"activityDate\":\"2021\"},{\"id\":2,\"activityType\":\"Cycling\",\"activityName\":\"Second name\",\"time\":\"5:00\",\"distance\":5.0,\"activityDate\":\"2021\"},{\"id\":3,\"activityType\":\"Hiking\",\"activityName\":\"Third name\",\"time\":\"125:00\",\"distance\":125.0,\"activityDate\":\"2021\"}]";
+        MvcResult result = this.mockMvc.perform(get("/activities"))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andReturn();
+        String content = result.getResponse().getContentAsString();
+        assertTrue(content.contains(expectedContent));
     }
 
     @WithMockUser(value = "spring")
