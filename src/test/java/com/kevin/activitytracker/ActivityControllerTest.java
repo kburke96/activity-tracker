@@ -1,6 +1,5 @@
 package com.kevin.activitytracker;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -9,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.kevin.activitytracker.controllers.HomeController;
+import com.kevin.activitytracker.controller.ActivityController;
 import com.kevin.activitytracker.model.Activity;
 import com.kevin.activitytracker.security.jwt.AuthEntryPointJwt;
 import com.kevin.activitytracker.security.jwt.JwtUtils;
@@ -36,8 +35,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(HomeController.class)
-public class ActivityControllerTest {
+@WebMvcTest(ActivityController.class)
+class ActivityControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
