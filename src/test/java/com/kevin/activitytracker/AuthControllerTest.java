@@ -3,7 +3,7 @@ package com.kevin.activitytracker;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-import com.kevin.activitytracker.controllers.AuthController;
+import com.kevin.activitytracker.controller.AuthController;
 import com.kevin.activitytracker.model.ERole;
 import com.kevin.activitytracker.model.Role;
 import com.kevin.activitytracker.model.User;

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.kevin.activitytracker.controllers.HomeController;
+import com.kevin.activitytracker.controller.ActivityController;
 import com.kevin.activitytracker.model.Activity;
 import com.kevin.activitytracker.security.jwt.AuthEntryPointJwt;
 import com.kevin.activitytracker.security.jwt.JwtUtils;
@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(HomeController.class)
+@WebMvcTest(ActivityController.class)
 class ActivityControllerTest {
 
     @Autowired
