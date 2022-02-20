@@ -59,6 +59,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 			.authorizeRequests().antMatchers("/api/auth/**").permitAll()
 			.antMatchers("/api/test/**").permitAll()
+			.antMatchers("/swagger-ui/**").permitAll()
+			.antMatchers("/webjars/**").permitAll()
+			.antMatchers("/v2/**").permitAll()
+			.antMatchers("/swagger-resources/**").permitAll()
 			.anyRequest().authenticated();
 
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
