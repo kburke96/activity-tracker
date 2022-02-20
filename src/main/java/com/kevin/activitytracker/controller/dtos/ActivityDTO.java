@@ -1,4 +1,4 @@
-package com.kevin.activitytracker.controllers.dtos;
+package com.kevin.activitytracker.controller.dtos;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.kevin.activitytracker.controllers;
+package com.kevin.activitytracker.controller;
 
 public final class AuthConstants {
     static final String ROLE_NOT_FOUND_ERROR = "Error: Role is not found";

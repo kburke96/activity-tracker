@@ -1,6 +1,6 @@
-package com.kevin.activitytracker.controllers;
+package com.kevin.activitytracker.controller;
 
-import com.kevin.activitytracker.controllers.dtos.ActivityDTO;
+import com.kevin.activitytracker.controller.dtos.ActivityDTO;
 import com.kevin.activitytracker.exception.ActivityNotFoundException;
 import com.kevin.activitytracker.model.Activity;
 import com.kevin.activitytracker.service.ActivityService;
@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @CrossOrigin()
 @RequiredArgsConstructor
-public class HomeController {
+public class ActivityController {
     
     private final ActivityService service;
 

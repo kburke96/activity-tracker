@@ -1,5 +1,7 @@
-package com.kevin.activitytracker.controllers;
+package com.kevin.activitytracker.controller;
 
+
+import static com.kevin.activitytracker.controller.AuthConstants.*;
 
 import java.util.HashSet;
 import java.util.List;
@@ -33,7 +35,6 @@ import com.kevin.activitytracker.repository.RoleRepository;
 import com.kevin.activitytracker.repository.UserRepository;
 import com.kevin.activitytracker.security.jwt.JwtUtils;
 import com.kevin.activitytracker.security.services.UserDetailsImpl;
-import static com.kevin.activitytracker.controllers.AuthConstants.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
