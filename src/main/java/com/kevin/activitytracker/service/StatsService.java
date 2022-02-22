@@ -17,10 +17,19 @@ public class StatsService {
     private final ActivityRepository activityRepo;
 
     public Long getActivityHoursInMonth(int year, String month) {
+        int[] monthNumberAndDays = getMonthNumberAndDays(month, year);
+        int monthNumber = monthNumberAndDays[0];
+        int daysInMonth = monthNumberAndDays[1];
 
+        List<Activity> activitiesInMonth = activityRepo.findActivitiesByMonth(year, monthNumber, daysInMonth);
+
+        Long totalMinutes = activitiesInMonth.stream().map(a -> Duration.between(LocalTime.MIN, LocalTime.parse(a.getTime()))).mapToLong(Duration::toMinutes).sum();
+        return Math.floorDiv(totalMinutes, 60);
+    }
+
+    private int[] getMonthNumberAndDays(String month, int year) {
         int monthNumber = 0;
         int daysInMonth = 0;
-
         switch (month) {
             case "jan":
                 monthNumber=1;
@@ -75,10 +84,7 @@ public class StatsService {
                 break;
         }
 
-        List<Activity> activitiesInMonth = activityRepo.findActivitiesByMonth(year, monthNumber, daysInMonth);
-
-        Long totalMinutes = activitiesInMonth.stream().map(a -> Duration.between(LocalTime.MIN, LocalTime.parse(a.getTime()))).mapToLong(Duration::toMinutes).sum();
-        return Math.floorDiv(totalMinutes, 60);
+        return new int[]{monthNumber, daysInMonth};
     }
 
 }
