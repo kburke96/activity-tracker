@@ -6,7 +6,11 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.kevin.activitytracker.model.Activity;
 import com.kevin.activitytracker.repository.ActivityRepository;
@@ -57,8 +61,18 @@ public class StatsServiceTest {
 
         when(repo.findActivitiesByMonth(anyInt(), anyInt(), anyInt())).thenReturn(activityList);
 
-        Long hours = service.getActivityHoursInMonth(2021, "mar");
+        String[] months = {"jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"};
 
+        for(int i=0; i<months.length; i++) {
+            Long hours = service.getActivityHoursInMonth(2021, months[i]);
+            assertEquals(2L, hours);
+        }
+    }
+
+    @Test
+    void findActivitiesInFebruaryInLeapYear() {
+        when(repo.findActivitiesByMonth(anyInt(), anyInt(), anyInt())).thenReturn(activityList);
+        Long hours = service.getActivityHoursInMonth(2020, "feb");
         assertEquals(2L, hours);
     }
 
