@@ -44,54 +44,54 @@ public class StatsService {
         String lastDay = "";
         switch (month) {
             case "jan":
-                firstDay = "01/1";
+                firstDay = "01/01";
                 lastDay = "01/31";
                 break;
             case "feb":
-                firstDay = "01/1";
+                firstDay = "01/01";
                 if (year % 4 == 0)
                     lastDay = "02/29";
                 else
                     lastDay = "02/28";
                 break;
             case "mar":
-                firstDay = "03/1";
+                firstDay = "03/01";
                 lastDay = "03/31";
                 break;
             case "apr":
-                firstDay = "04/1";
+                firstDay = "04/01";
                 lastDay = "04/30";
                 break;
             case "may":
-                firstDay = "05/1";
+                firstDay = "05/01";
                 lastDay = "05/31";
                 break;
             case "jun":
-                firstDay = "06/1";
+                firstDay = "06/01";
                 lastDay = "06/30";
                 break;
             case "jul":
-                firstDay = "07/1";
+                firstDay = "07/01";
                 lastDay = "07/31";;
                 break;
             case "aug":
-                firstDay = "08/1";
+                firstDay = "08/01";
                 lastDay = "08/31";
                 break;
             case "sep":
-                firstDay = "09/1";
+                firstDay = "09/01";
                 lastDay = "09/30";
                 break;
             case "oct":
-                firstDay = "10/1";
+                firstDay = "10/01";
                 lastDay = "10/31";
                 break;
             case "nov":
-                firstDay = "11/1";
+                firstDay = "11/01";
                 lastDay = "11/30";
                 break;
             case "dec":
-                firstDay = "12/1";
+                firstDay = "12/01";
                 lastDay = "12/31";
                 break;
         }
