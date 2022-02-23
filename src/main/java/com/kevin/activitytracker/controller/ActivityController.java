@@ -1,5 +1,7 @@
 package com.kevin.activitytracker.controller;
 
+import java.time.LocalDate;
+
 import com.kevin.activitytracker.controller.dtos.ActivityDTO;
 import com.kevin.activitytracker.exception.ActivityNotFoundException;
 import com.kevin.activitytracker.model.Activity;
@@ -55,7 +57,7 @@ public class ActivityController {
         Activity newActivity = Activity.builder()
                         .activityType(inputActivity.getActivityType())
                         .activityName(inputActivity.getActivityName())
-                        .activityDate(inputActivity.getActivityDate())
+                        .activityDate(LocalDate.parse(inputActivity.getActivityDate()))
                         .time(inputActivity.getTime())
                         .distance(inputActivity.getDistance())
                         .build();

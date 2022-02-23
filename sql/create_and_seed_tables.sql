@@ -1,10 +1,12 @@
 DROP TABLE IF EXISTS activities;
 DROP TABLE IF EXISTS roles;
 
+SET datestyle = dmy;
+
 CREATE TABLE IF NOT EXISTS activities (
     id serial primary key,
     activity_type varchar,
-    date varchar,
+    date date,
     title varchar,
     distance varchar,
     calories varchar,

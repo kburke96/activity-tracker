@@ -1,7 +1,9 @@
 package com.kevin.activitytracker.service;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import com.kevin.activitytracker.model.Activity;
 import com.kevin.activitytracker.repository.ActivityRepository;
@@ -16,12 +18,12 @@ public class StatsService {
 
     private final ActivityRepository activityRepo;
 
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+
     public Long getActivityHoursInMonth(int year, String month) {
         String[] monthNumberAndDays = getMonthNumberAndDays(month, year);
-        String startDate = year + "/" + monthNumberAndDays[0];
-        String endDate = year + "/" + monthNumberAndDays[1];
 
-        List<Activity> activitiesInMonth = activityRepo.findByActivityDateBetween(startDate, endDate);
+        List<Activity> activitiesInMonth = activityRepo.findByActivityDateBetween(LocalDate.parse(monthNumberAndDays[0], formatter), LocalDate.parse(monthNumberAndDays[1], formatter));
 
         Long totalMinutes = activitiesInMonth.stream()
                 .map(a -> Duration.between(LocalTime.MIN, LocalTime.parse(a.getTime()))).mapToLong(Duration::toMinutes)
@@ -31,10 +33,8 @@ public class StatsService {
 
     public List<Activity> getActivitiesByTypeInMonth(String type, int year, String month) {
         String[] monthNumberAndDays = getMonthNumberAndDays(month, year);
-        String startDate = year + "/" + monthNumberAndDays[0];
-        String endDate = year + "/" + monthNumberAndDays[1];
-
-        List<Activity> typeActivitiesInMonth = activityRepo.findByActivityTypeAndActivityDateBetween(type, startDate, endDate);
+        
+        List<Activity> typeActivitiesInMonth = activityRepo.findByActivityTypeAndActivityDateBetween(type, LocalDate.parse(monthNumberAndDays[0], formatter), LocalDate.parse(monthNumberAndDays[1], formatter));
 
         return typeActivitiesInMonth;
     }
@@ -44,55 +44,55 @@ public class StatsService {
         String lastDay = "";
         switch (month) {
             case "jan":
-                firstDay = "01/01";
-                lastDay = "01/31";
+                firstDay = "01/01/"+year;
+                lastDay = "31/01/"+year;
                 break;
             case "feb":
-                firstDay = "01/01";
+                firstDay = "01/02/"+year;
                 if (year % 4 == 0)
-                    lastDay = "02/29";
+                    lastDay = "29/02/"+year;
                 else
-                    lastDay = "02/28";
+                    lastDay = "28/02/"+year;
                 break;
             case "mar":
-                firstDay = "03/01";
-                lastDay = "03/31";
+                firstDay = "01/03/"+year;
+                lastDay = "31/03/"+year;
                 break;
             case "apr":
-                firstDay = "04/01";
-                lastDay = "04/30";
+                firstDay = "01/04/"+year;
+                lastDay = "30/04/"+year;
                 break;
             case "may":
-                firstDay = "05/01";
-                lastDay = "05/31";
+                firstDay = "01/05/"+year;
+                lastDay = "31/05/"+year;
                 break;
             case "jun":
-                firstDay = "06/01";
-                lastDay = "06/30";
+                firstDay = "01/06/"+year;
+                lastDay = "30/06/"+year;
                 break;
             case "jul":
-                firstDay = "07/01";
-                lastDay = "07/31";;
+                firstDay = "01/07/"+year;
+                lastDay = "31/07/"+year;
                 break;
             case "aug":
-                firstDay = "08/01";
-                lastDay = "08/31";
+                firstDay = "01/08/"+year;
+                lastDay = "31/08/"+year;
                 break;
             case "sep":
-                firstDay = "09/01";
-                lastDay = "09/30";
+                firstDay = "01/09/"+year;
+                lastDay = "30/09/"+year;
                 break;
             case "oct":
-                firstDay = "10/01";
-                lastDay = "10/31";
+                firstDay = "01/10/"+year;
+                lastDay = "31/10/"+year;
                 break;
             case "nov":
-                firstDay = "11/01";
-                lastDay = "11/30";
+                firstDay = "01/11/"+year;
+                lastDay = "30/11/"+year;
                 break;
             case "dec":
-                firstDay = "12/01";
-                lastDay = "12/31";
+                firstDay = "01/12/"+year;
+                lastDay = "31/12/"+year;
                 break;
         }
         return new String[] { firstDay, lastDay };

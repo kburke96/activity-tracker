@@ -1,5 +1,6 @@
 package com.kevin.activitytracker.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,8 +14,8 @@ public interface ActivityRepository extends JpaRepository<Activity, Long> {
     List<Activity> findByActivityType(String activityType);
     Optional<Activity> findById(Long id);
 
-    List<Activity> findByActivityDateBetween(String startDate, String endDate);
+    List<Activity> findByActivityDateBetween(LocalDate startDate, LocalDate endDate);
 
-    List<Activity> findByActivityTypeAndActivityDateBetween(String activityType, String startDate, String endDate);
+    List<Activity> findByActivityTypeAndActivityDateBetween(String activityType, LocalDate startDate, LocalDate endDate);
 
 }

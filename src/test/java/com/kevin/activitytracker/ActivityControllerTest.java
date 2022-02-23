@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -53,12 +55,14 @@ class ActivityControllerTest {
     @MockBean
     private JwtUtils jwtUtils;
 
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+
     Activity activity1 = Activity.builder().id(1L).activityName("First name").activityType("Running")
-            .activityDate("2021").time("15:00").distance(15.00).build();
+            .activityDate(LocalDate.parse("01/01/2020", formatter)).time("15:00").distance(15.00).build();
     Activity activity2 = Activity.builder().id(2L).activityName("Second name").activityType("Cycling")
-            .activityDate("2021").time("5:00").distance(5.00).build();
+            .activityDate(LocalDate.parse("13/04/2020", formatter)).time("5:00").distance(5.00).build();
     Activity activity3 = Activity.builder().id(3L).activityName("Third name").activityType("Hiking")
-            .activityDate("2021").time("125:00").distance(125.00).build();
+            .activityDate(LocalDate.parse("21/10/2020", formatter)).time("125:00").distance(125.00).build();
 
     PageRequest pageable = PageRequest.of(0, 10, Sort.by("id"));
 
@@ -71,7 +75,7 @@ class ActivityControllerTest {
     @Test
     void getAllActivitiesTest() throws Exception {
         when(activityService.getAllActivities(pageable)).thenReturn(allActivitiesPage);
-        String expectedContent = "{\"content\":[{\"id\":1,\"activityType\":\"Running\",\"activityName\":\"First name\",\"time\":\"15:00\",\"distance\":15.0,\"activityDate\":\"2021\"},{\"id\":2,\"activityType\":\"Cycling\",\"activityName\":\"Second name\",\"time\":\"5:00\",\"distance\":5.0,\"activityDate\":\"2021\"},{\"id\":3,\"activityType\":\"Hiking\",\"activityName\":\"Third name\",\"time\":\"125:00\",\"distance\":125.0,\"activityDate\":\"2021\"}]";
+        String expectedContent = "{\"content\":[{\"id\":1,\"activityType\":\"Running\",\"activityName\":\"First name\",\"time\":\"15:00\",\"distance\":15.0,\"activityDate\":\"2020-01-01\"},{\"id\":2,\"activityType\":\"Cycling\",\"activityName\":\"Second name\",\"time\":\"5:00\",\"distance\":5.0,\"activityDate\":\"2020-04-13\"},{\"id\":3,\"activityType\":\"Hiking\",\"activityName\":\"Third name\",\"time\":\"125:00\",\"distance\":125.0,\"activityDate\":\"2020-10-21\"}]";
         MvcResult result = this.mockMvc.perform(get("/activities"))
             .andDo(print())
             .andExpect(status().isOk())
@@ -102,7 +106,7 @@ class ActivityControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
         
-        String expectedContent = "{\"id\":1,\"activityType\":\"Running\",\"activityName\":\"First name\",\"time\":\"15:00\",\"distance\":15.0,\"activityDate\":\"2021\"}";
+        String expectedContent = "{\"id\":1,\"activityType\":\"Running\",\"activityName\":\"First name\",\"time\":\"15:00\",\"distance\":15.0,\"activityDate\":\"2020-01-01\"}";
         assertTrue(result.getResponse().getContentAsString().contains(expectedContent));
     }
 
@@ -121,7 +125,7 @@ class ActivityControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
         
-        String expectedContent = "{\"id\":1,\"activityType\":\"Running\",\"activityName\":\"First name\",\"time\":\"15:00\",\"distance\":15.0,\"activityDate\":\"2021\"}";
+        String expectedContent = "{\"id\":1,\"activityType\":\"Running\",\"activityName\":\"First name\",\"time\":\"15:00\",\"distance\":15.0,\"activityDate\":\"2020-01-01\"}";
         assertTrue(result.getResponse().getContentAsString().contains(expectedContent));
     }
 
@@ -137,7 +141,7 @@ class ActivityControllerTest {
                 .characterEncoding("UTF-8")
                 .content(activity1.toJsonString());
         
-        String expectedContent = "{\"id\":1,\"activityType\":\"Running\",\"activityName\":\"First name\",\"time\":\"15:00\",\"distance\":15.0,\"activityDate\":\"2021\"}";
+        String expectedContent = "{\"id\":1,\"activityType\":\"Running\",\"activityName\":\"First name\",\"time\":\"15:00\",\"distance\":15.0,\"activityDate\":\"2020-01-01\"}";
 
         MvcResult result = this.mockMvc.perform(builder)
                 .andDo(print())
@@ -157,7 +161,7 @@ class ActivityControllerTest {
                 .accept(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8");
         
-        String expectedContent = "{\"id\":1,\"activityType\":\"Running\",\"activityName\":\"First name\",\"time\":\"15:00\",\"distance\":15.0,\"activityDate\":\"2021\"}";
+        String expectedContent = "{\"id\":1,\"activityType\":\"Running\",\"activityName\":\"First name\",\"time\":\"15:00\",\"distance\":15.0,\"activityDate\":\"2020-01-01\"}";
 
         MvcResult result = this.mockMvc.perform(builder)
                 .andDo(print())
