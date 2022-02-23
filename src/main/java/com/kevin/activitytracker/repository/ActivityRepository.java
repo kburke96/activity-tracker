@@ -12,4 +12,9 @@ public interface ActivityRepository extends JpaRepository<Activity, Long> {
 
     List<Activity> findByActivityType(String activityType);
     Optional<Activity> findById(Long id);
+
+    List<Activity> findByActivityDateBetween(String startDate, String endDate);
+
+    List<Activity> findByActivityTypeAndActivityDateBetween(String activityType, String startDate, String endDate);
+
 }
