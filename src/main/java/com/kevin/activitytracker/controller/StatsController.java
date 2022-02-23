@@ -29,7 +29,7 @@ public class StatsController {
     @GetMapping(
         value = "/{year}/{month}",
         params = "activityType")
-    public ResponseEntity<Iterable<Activity>> getActivitiesByTimeInMonth(@RequestParam("activityType") String type, @PathVariable int year, @PathVariable String month) {
+    public ResponseEntity<Iterable<Activity>> getActivitiesByTypeInMonth(@RequestParam("activityType") String type, @PathVariable int year, @PathVariable String month) {
         return ResponseEntity.ok(statsService.getActivitiesByTypeInMonth(type, year, month));
     }
 }
