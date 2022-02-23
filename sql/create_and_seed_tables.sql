@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS roles;
 CREATE TABLE IF NOT EXISTS activities (
     id serial primary key,
     activity_type varchar,
-    date varchar,
+    date date,
     title varchar,
     distance varchar,
     calories varchar,

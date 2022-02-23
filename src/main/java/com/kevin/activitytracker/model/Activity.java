@@ -1,6 +1,8 @@
 package com.kevin.activitytracker.model;
 
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -42,7 +44,7 @@ public class Activity {
     private double distance;
 
     @Column(name="date")
-    private String activityDate;
+    private LocalDate activityDate;
 
 
     @Override

@@ -22,6 +22,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -36,12 +38,14 @@ class ActivityServiceTest {
 
     private ActivityService service;
 
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+
     Activity activity1 = Activity.builder().id(1L).activityName("First name").activityType("Running")
-            .activityDate("2021").time("15:00").distance(15.00).build();
+            .activityDate(LocalDate.parse("21/10/2020", formatter)).time("15:00").distance(15.00).build();
     Activity activity2 = Activity.builder().id(2L).activityName("Second name").activityType("Cycling")
-            .activityDate("2021").time("5:00").distance(5.00).build();
+            .activityDate(LocalDate.parse("12/11/2020", formatter)).time("5:00").distance(5.00).build();
     Activity activity3 = Activity.builder().id(3L).activityName("Third name").activityType("Hiking")
-            .activityDate("2021").time("125:00").distance(125.00).build();
+            .activityDate(LocalDate.parse("03/05/2020", formatter)).time("125:00").distance(125.00).build();
 
     List<Activity> activityList;
 
@@ -57,7 +61,7 @@ class ActivityServiceTest {
 
     @Test
     void savedActivityHasTitle() {
-        Activity activity = Activity.builder().activityName("title").activityType("cycling").activityDate("2021")
+        Activity activity = Activity.builder().activityName("title").activityType("cycling").activityDate(LocalDate.parse("13/04/2020", formatter))
                 .distance(15.00).time("20:00").build();
 
         when(repo.save(any(Activity.class))).then(returnsFirstArg());

@@ -25,6 +25,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -47,14 +49,16 @@ public class StatsControllerTest {
     @MockBean
     private JwtUtils jwtUtils;
 
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+
     Activity activity1 = Activity.builder().id(1L).activityName("First name").activityType("Running")
-            .activityDate("13/07/2021 16:37").time("00:15:00").distance(15.00).build();
+            .activityDate(LocalDate.parse("21/10/2020", formatter)).time("15:00").distance(15.00).build();
     Activity activity2 = Activity.builder().id(2L).activityName("Second name").activityType("Cycling")
-            .activityDate("23/07/2021 14:23").time("00:55:00").distance(5.00).build();
+            .activityDate(LocalDate.parse("12/11/2020", formatter)).time("5:00").distance(5.00).build();
     Activity activity3 = Activity.builder().id(3L).activityName("Third name").activityType("Hiking")
-            .activityDate("03/10/2021 20:56").time("00:54:00").distance(125.00).build();
-    Activity activity4 = Activity.builder().id(1L).activityName("Another activity").activityType("Running")
-            .activityDate("13/07/2021 16:37").time("00:15:00").distance(15.00).build();
+            .activityDate(LocalDate.parse("03/05/2020", formatter)).time("125:00").distance(125.00).build();
+    Activity activity4 = Activity.builder().id(4L).activityName("Another activity").activityType("Running")
+            .activityDate(LocalDate.parse("06/06/2020", formatter)).time("00:15:00").distance(15.00).build();
 
     List<Activity> activityList = Stream.of(activity1, activity2, activity3, activity4).collect(Collectors.toList());
     List<Activity> runningActivities = Stream.of(activity1, activity4).collect(Collectors.toList());
@@ -82,8 +86,7 @@ public class StatsControllerTest {
             .andExpect(status().isOk())
             .andReturn();
         
-        String expected = "[{\"id\":1,\"activityType\":\"Running\",\"activityName\":\"First name\",\"time\":\"00:15:00\",\"distance\":15.0,\"activityDate\":\"13/07/2021 16:37\"},{\"id\":1,\"activityType\":\"Running\",\"activityName\":\"Another activity\",\"time\":\"00:15:00\",\"distance\":15.0,\"activityDate\":\"13/07/2021 16:37\"}]";
-        
+        String expected =  "[{\"id\":1,\"activityType\":\"Running\",\"activityName\":\"First name\",\"time\":\"15:00\",\"distance\":15.0,\"activityDate\":\"2020-10-21\"},{\"id\":4,\"activityType\":\"Running\",\"activityName\":\"Another activity\",\"time\":\"00:15:00\",\"distance\":15.0,\"activityDate\":\"2020-06-06\"}]";
         assertTrue(result.getResponse().getContentAsString().contains(expected));
     }
 }
