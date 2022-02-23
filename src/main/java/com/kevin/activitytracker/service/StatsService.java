@@ -13,86 +13,89 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class StatsService {
-    
+
     private final ActivityRepository activityRepo;
 
     public Long getActivityHoursInMonth(int year, String month) {
-        int[] monthNumberAndDays = getMonthNumberAndDays(month, year);
-        int monthNumber = monthNumberAndDays[0];
-        int daysInMonth = monthNumberAndDays[1];
+        String[] monthNumberAndDays = getMonthNumberAndDays(month, year);
+        String startDate = year + "/" + monthNumberAndDays[0];
+        String endDate = year + "/" + monthNumberAndDays[1];
 
-        List<Activity> activitiesInMonth = activityRepo.findActivitiesByMonth(year, monthNumber, daysInMonth);
+        List<Activity> activitiesInMonth = activityRepo.findByActivityDateBetween(startDate, endDate);
 
-        Long totalMinutes = activitiesInMonth.stream().map(a -> Duration.between(LocalTime.MIN, LocalTime.parse(a.getTime()))).mapToLong(Duration::toMinutes).sum();
+        Long totalMinutes = activitiesInMonth.stream()
+                .map(a -> Duration.between(LocalTime.MIN, LocalTime.parse(a.getTime()))).mapToLong(Duration::toMinutes)
+                .sum();
         return Math.floorDiv(totalMinutes, 60);
     }
 
     public List<Activity> getActivitiesByTypeInMonth(String type, int year, String month) {
-        int[] monthNumberAndDays = getMonthNumberAndDays(month, year);
-        int monthNumber = monthNumberAndDays[0];
-        int daysInMonth = monthNumberAndDays[1];
+        String[] monthNumberAndDays = getMonthNumberAndDays(month, year);
+        String startDate = year + "/" + monthNumberAndDays[0];
+        String endDate = year + "/" + monthNumberAndDays[1];
 
-        return activityRepo.findActivitiesByTypeInMonth(type, year, monthNumber, daysInMonth);
+        List<Activity> typeActivitiesInMonth = activityRepo.findByActivityTypeAndActivityDateBetween(type, startDate, endDate);
+
+        return typeActivitiesInMonth;
     }
 
-    private int[] getMonthNumberAndDays(String month, int year) {
-        int monthNumber = 0;
-        int daysInMonth = 0;
+    private String[] getMonthNumberAndDays(String month, int year) {
+        String firstDay = "";
+        String lastDay = "";
         switch (month) {
             case "jan":
-                monthNumber=1;
-                daysInMonth=31;
+                firstDay = "01/1";
+                lastDay = "01/31";
                 break;
             case "feb":
-                monthNumber=2;
-                if(year%4==0)
-                    daysInMonth=29;
+                firstDay = "01/1";
+                if (year % 4 == 0)
+                    lastDay = "02/29";
                 else
-                    daysInMonth=28;
+                    lastDay = "02/28";
                 break;
             case "mar":
-                monthNumber=3;
-                daysInMonth=31;
+                firstDay = "03/1";
+                lastDay = "03/31";
                 break;
             case "apr":
-                monthNumber=4;
-                daysInMonth=30;
+                firstDay = "04/1";
+                lastDay = "04/30";
                 break;
             case "may":
-                monthNumber=5;
-                daysInMonth=31;
+                firstDay = "05/1";
+                lastDay = "05/31";
                 break;
             case "jun":
-                monthNumber=6;
-                daysInMonth=30;
+                firstDay = "06/1";
+                lastDay = "06/30";
                 break;
             case "jul":
-                monthNumber=7;
-                daysInMonth=31;
+                firstDay = "07/1";
+                lastDay = "07/31";;
                 break;
             case "aug":
-                monthNumber=8;
-                daysInMonth=31;
+                firstDay = "08/1";
+                lastDay = "08/31";
                 break;
             case "sep":
-                monthNumber=9;
-                daysInMonth=30;
+                firstDay = "09/1";
+                lastDay = "09/30";
                 break;
             case "oct":
-                monthNumber=10;
-                daysInMonth=31;
+                firstDay = "10/1";
+                lastDay = "10/31";
                 break;
             case "nov":
-                monthNumber=11;
-                daysInMonth=30;
+                firstDay = "11/1";
+                lastDay = "11/30";
                 break;
             case "dec":
-                monthNumber=12;
-                daysInMonth=31;
+                firstDay = "12/1";
+                lastDay = "12/31";
                 break;
         }
-
-        return new int[]{monthNumber, daysInMonth};
+        return new String[] { firstDay, lastDay };
     }
 
 }

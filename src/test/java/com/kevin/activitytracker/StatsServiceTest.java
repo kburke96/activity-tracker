@@ -1,17 +1,11 @@
 package com.kevin.activitytracker;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-
 import com.kevin.activitytracker.model.Activity;
 import com.kevin.activitytracker.repository.ActivityRepository;
 import com.kevin.activitytracker.service.StatsService;
@@ -59,7 +53,7 @@ public class StatsServiceTest {
     @Test
     void findActivitiesByMonthTest() {
 
-        when(repo.findActivitiesByMonth(anyInt(), anyInt(), anyInt())).thenReturn(activityList);
+        when(repo.findByActivityDateBetween(anyString(), anyString())).thenReturn(activityList);
 
         String[] months = {"jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"};
 
@@ -71,15 +65,15 @@ public class StatsServiceTest {
 
     @Test
     void findActivitiesInFebruaryInLeapYear() {
-        when(repo.findActivitiesByMonth(anyInt(), anyInt(), anyInt())).thenReturn(activityList);
+        when(repo.findByActivityDateBetween(anyString(), anyString())).thenReturn(activityList);
         Long hours = service.getActivityHoursInMonth(2020, "feb");
         assertEquals(2L, hours);
     }
 
     @Test
     void findRunningActivitiesInMonthTest() {
-        when(repo.findActivitiesByTypeInMonth(anyString(), anyInt(), anyInt(), anyInt())).thenReturn(runningActivities);
+        when(repo.findByActivityTypeAndActivityDateBetween(anyString(), anyString(), anyString())).thenReturn(runningActivities);
 
-        assertEquals(runningActivities, service.getActivitiesByTypeInMonth("Running", 2022, "apr"));
+        assertEquals(runningActivities, service.getActivitiesByTypeInMonth("Running", 2021, "jul"));
     }
 }
